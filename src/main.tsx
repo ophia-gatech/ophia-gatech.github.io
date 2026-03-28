@@ -10,7 +10,7 @@ import { theme } from './theme';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter basename="/ophia-gatech">
+    <BrowserRouter>
       <MantineProvider theme={theme}>
         <App />
       </MantineProvider>
