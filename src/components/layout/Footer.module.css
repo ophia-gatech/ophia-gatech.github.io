@@ -1,0 +1,75 @@
+.footer {
+  background: #111b33;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.logoMark {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c9a84c, #a8872e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: #1a2744;
+  flex-shrink: 0;
+}
+
+.brandName {
+  color: #ffffff;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.brandSub {
+  color: #c9a84c;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.colTitle {
+  color: #ffffff !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.25rem;
+}
+
+.footerLink {
+  color: rgba(255, 255, 255, 0.55) !important;
+  text-decoration: none !important;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+  display: block;
+}
+
+.footerLink:hover {
+  color: #c9a84c !important;
+}
+
+.socialLink {
+  color: rgba(255, 255, 255, 0.5) !important;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.socialLink:hover {
+  color: #c9a84c !important;
+}
+
+.bottomLink {
+  color: rgba(255, 255, 255, 0.35) !important;
+  text-decoration: none !important;
+  transition: color 0.2s;
+}
+
+.bottomLink:hover {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
