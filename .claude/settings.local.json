@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Program Files/**)",
+      "Read(//c/Users/stap2/AppData/Roaming/**)",
+      "Read(//c/Users/stap2/scoop/apps/**)",
+      "Read(//c/Users/stap2/AppData/Local/**)",
+      "Read(//c/tools/**)",
+      "Bash(cmd.exe /c \"where node\")",
+      "Bash(cmd.exe /c \"node --version\")",
+      "Bash(cmd.exe /c \"npm --version\")",
+      "Bash(cmd.exe /c \"where node && node --version && npm --version\")",
+      "Bash(npm --version)",
+      "Bash(export PATH=\"$PATH:/c/Program Files/nodejs\")",
+      "Bash(printf \"# IDE\\\\n.idea/\\\\n.vscode/\\\\n\\\\n\")"
+    ]
+  }
+}
