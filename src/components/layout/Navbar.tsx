@@ -4,10 +4,11 @@ import { useDisclosure, useWindowScroll } from '@mantine/hooks';
 import classes from './Navbar.module.css';
 
 const links = [
-  { to: '/',        label: 'Home'     },
-  { to: '/team',    label: 'Our Team' },
-  { to: '/gallery', label: 'Gallery'  },
-  { to: '/contact', label: 'Contact'  },
+  { to: '/',        label: 'Home'       },
+  { to: '/gallery', label: 'Service'    },
+  { to: '/join',    label: 'Sisterhood' },
+  { to: '/team',    label: 'Leadership' },
+  { to: '/contact', label: 'Contact'    },
 ];
 
 export function Navbar() {
@@ -43,7 +44,7 @@ export function Navbar() {
               </NavLink>
             ))}
             <Button component={Link} to="/join" className={classes.ctaBtn} size="sm">
-              Join Us
+              Join Us →
             </Button>
           </Group>
 

@@ -48,11 +48,11 @@ export function Footer() {
           <Stack gap={6}>
             <Text className={classes.colTitle}>Navigate</Text>
             {[
-              { to: '/',        label: 'Home'            },
-              { to: '/team',    label: 'Meet the Team'   },
-              { to: '/join',    label: 'Become a Member' },
-              { to: '/gallery', label: 'Gallery'         },
-              { to: '/contact', label: 'Contact Us'      },
+              { to: '/',        label: 'Home'       },
+              { to: '/gallery', label: 'Service'    },
+              { to: '/join',    label: 'Sisterhood' },
+              { to: '/team',    label: 'Leadership' },
+              { to: '/contact', label: 'Contact'    },
             ].map(l => (
               <Anchor key={l.to} component={Link} to={l.to} className={classes.footerLink}>{l.label}</Anchor>
             ))}

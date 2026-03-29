@@ -33,11 +33,9 @@ function GalleryCard({ item }: { item: GalleryItem }) {
 }
 
 export function Gallery() {
-  const [active, setActive] = useState<string>('all');
+  const [active, setActive] = useState<string>('service');
 
-  const filtered = galleryItems.filter(
-    item => active === 'all' || item.category === active
-  );
+  const filtered = galleryItems.filter(item => item.category === active);
 
   return (
     <Box>
@@ -51,9 +49,8 @@ export function Gallery() {
         <Container size="xl">
 
           {/* Filter Tabs */}
-          <Tabs value={active} onChange={v => setActive(v ?? 'all')} mb="2.5rem">
+          <Tabs value={active} onChange={v => setActive(v ?? 'service')} mb="2.5rem">
             <Tabs.List className={classes.tabList}>
-              <Tabs.Tab value="all"        className={classes.tab}>All Photos</Tabs.Tab>
               <Tabs.Tab value="service"    className={classes.tab}>Service</Tabs.Tab>
               <Tabs.Tab value="sisterhood" className={classes.tab}>Sisterhood</Tabs.Tab>
             </Tabs.List>
