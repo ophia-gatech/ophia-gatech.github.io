@@ -5,7 +5,7 @@ import classes from './Navbar.module.css';
 
 const links = [
   { to: '/',        label: 'Home'       },
-  { to: '/gallery', label: 'Service'    },
+  { to: '/service', label: 'Service'    },
   { to: '/join',    label: 'Sisterhood' },
   { to: '/team',    label: 'Leadership' },
   { to: '/contact', label: 'Contact'    },

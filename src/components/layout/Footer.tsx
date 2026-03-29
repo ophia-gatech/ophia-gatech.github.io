@@ -49,7 +49,7 @@ export function Footer() {
             <Text className={classes.colTitle}>Navigate</Text>
             {[
               { to: '/',        label: 'Home'       },
-              { to: '/gallery', label: 'Service'    },
+              { to: '/service', label: 'Service'    },
               { to: '/join',    label: 'Sisterhood' },
               { to: '/team',    label: 'Leadership' },
               { to: '/contact', label: 'Contact'    },

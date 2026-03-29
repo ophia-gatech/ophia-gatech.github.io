@@ -6,6 +6,7 @@ import { Home } from './pages/Home';
 import { Team } from './pages/Team';
 import { Join } from './pages/Join';
 import { Gallery } from './pages/Gallery';
+import { Service } from './pages/Service';
 import { Contact } from './pages/Contact';
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/team" element={<Team />} />
           <Route path="/join" element={<Join />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/service" element={<Service />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
         <Footer />

@@ -1,0 +1,77 @@
+.sectionTitle {
+  font-family: 'Playfair Display', serif !important;
+  color: #1a2744 !important;
+  font-size: clamp(1.75rem, 3vw, 2.5rem) !important;
+  line-height: 1.2 !important;
+}
+
+/* Mini stats in mission section */
+.miniStat {
+  border-top: 3px solid #c9a84c;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.miniStat:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(26, 39, 68, 0.1) !important;
+}
+
+.miniStatValue {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a2744;
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+
+/* Project cards */
+.projectCard {
+  border: 1px solid rgba(26, 39, 68, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+.projectAccent {
+  height: 5px;
+  background: linear-gradient(90deg, #c9a84c, #a8872e);
+}
+
+.projectAccentNavy {
+  height: 5px;
+  background: linear-gradient(90deg, #1a2744, #3a5a9b);
+}
+
+.projectIcon {
+  background: linear-gradient(135deg, rgba(201,168,76,0.18), rgba(201,168,76,0.06)) !important;
+  color: #c9a84c !important;
+}
+
+.projectIconNavy {
+  background: linear-gradient(135deg, rgba(26,39,68,0.14), rgba(26,39,68,0.04)) !important;
+  color: #1a2744 !important;
+}
+
+/* Other ways cards */
+.otherCard {
+  border-top: 3px solid transparent;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.otherCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 36px rgba(26, 39, 68, 0.11) !important;
+  border-top-color: #c9a84c;
+}
+
+.otherIcon {
+  background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05)) !important;
+  color: #c9a84c !important;
+}
+
+.otherTitle {
+  font-family: 'Playfair Display', serif !important;
+  color: #1a2744 !important;
+  font-size: 1rem !important;
+}

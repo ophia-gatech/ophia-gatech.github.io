@@ -42,7 +42,7 @@ const pillars = [
     title: 'Service',
     description:
       'We believe in the power of community action. Our members log hundreds of volunteer hours each semester — from food banks and literacy programs to environmental clean-ups and youth mentorship.',
-    link: '/gallery',
+    link: '/service',
     linkLabel: 'See Our Work',
   },
   {
