@@ -1,11 +1,12 @@
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Box, Container, Title, Text, SimpleGrid, Paper, Stack,
-  Badge, Button, Group, Divider, ThemeIcon, List,
+  Badge, Button, Group, Divider, ThemeIcon, List, ActionIcon,
 } from '@mantine/core';
 import {
   IconHeart, IconUsers, IconArrowRight, IconSchool,
-  IconWorld, IconCheck,
+  IconWorld, IconCheck, IconChevronLeft, IconChevronRight,
 } from '@tabler/icons-react';
 import { PageHero } from '../components/layout/PageHero';
 import classes from './Service.module.css';
@@ -35,8 +36,6 @@ const otherWays = [
 
 // TODO: Replace gradient placeholders with real service photos.
 // Add an `image` field to each entry and render <img> instead of the gradient background.
-// TODO: Replace gradient placeholders with real service photos.
-// Add an `image` field to each entry and render <img> instead of the gradient background.
 const servicePhotos = [
   { id: 'sp1', domain: 'University Community',    badgeColor: 'navy',   gradient: 'linear-gradient(135deg, #1a2744 0%, #3a5a9b 100%)'              },
   { id: 'sp2', domain: 'University Community',    badgeColor: 'navy',   gradient: 'linear-gradient(160deg, #243460 0%, #4a6fa5 100%)'              },
@@ -47,6 +46,111 @@ const servicePhotos = [
   { id: 'sp7', domain: 'Nations of the World',    badgeColor: 'violet', gradient: 'linear-gradient(135deg, #2a1a3a 0%, #5a2d7a 50%, #8b4fb5 100%)' },
   { id: 'sp8', domain: 'Nations of the World',    badgeColor: 'violet', gradient: 'linear-gradient(160deg, #1a1a3a 0%, #3a2a6b 50%, #6a4db5 100%)' },
 ];
+
+function ServiceSlideshow() {
+  const [index, setIndex]   = useState(0);
+  const [paused, setPaused] = useState(false);
+  const intervalRef         = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Auto-advance every 3.5 s unless the user has touched the arrows
+  useEffect(() => {
+    if (paused) return;
+    intervalRef.current = setInterval(() => {
+      setIndex(i => (i + 1) % servicePhotos.length);
+    }, 3500);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [paused]);
+
+  const go = (dir: number) => {
+    setPaused(true);
+    setIndex(i => (i + dir + servicePhotos.length) % servicePhotos.length);
+  };
+
+  const photo = servicePhotos[index];
+
+  return (
+    <Box className={classes.slideshowWrap}>
+      {/* ── Main card ── */}
+      <Box className={classes.slideshowCard} style={{ background: photo.gradient }}>
+        {/* "Picture" label — always visible */}
+        <Box className={classes.photoLabel}>
+          <Text size="xs" style={{ color: 'rgba(255,255,255,0.4)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+            Picture
+          </Text>
+        </Box>
+
+        {/* Overlay — slides up on hover */}
+        <Box className={classes.photoOverlay}>
+          <Text size="sm" fw={600} c="white" lh={1.5}>
+            {photo.domain}: _______________
+          </Text>
+        </Box>
+
+        {/* Domain badge */}
+        <Badge
+          className={classes.photoBadge}
+          color={photo.badgeColor}
+          variant="filled"
+          size="xs"
+          radius="sm"
+        >
+          {photo.domain}
+        </Badge>
+
+        {/* Left arrow */}
+        <ActionIcon
+          className={`${classes.slideshowArrow} ${classes.slideshowArrowLeft}`}
+          size={44}
+          radius="xl"
+          onClick={() => go(-1)}
+          aria-label="Previous photo"
+        >
+          <IconChevronLeft size={22} />
+        </ActionIcon>
+
+        {/* Right arrow */}
+        <ActionIcon
+          className={`${classes.slideshowArrow} ${classes.slideshowArrowRight}`}
+          size={44}
+          radius="xl"
+          onClick={() => go(1)}
+          aria-label="Next photo"
+        >
+          <IconChevronRight size={22} />
+        </ActionIcon>
+      </Box>
+
+      {/* ── Dot indicators ── */}
+      <Group justify="center" mt="lg" gap={8}>
+        {servicePhotos.map((_, i) => (
+          <Box
+            key={i}
+            className={`${classes.slideshowDot} ${i === index ? classes.slideshowDotActive : classes.slideshowDotInactive}`}
+            onClick={() => { setPaused(true); setIndex(i); }}
+            role="button"
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </Group>
+
+      {/* Auto-play status hint */}
+      {paused && (
+        <Text ta="center" size="xs" c="dimmed" mt="xs" fs="italic">
+          Auto-play paused.{' '}
+          <Text
+            component="span"
+            style={{ color: '#a8872e', cursor: 'pointer', fontWeight: 600 }}
+            onClick={() => setPaused(false)}
+          >
+            Resume
+          </Text>
+        </Text>
+      )}
+    </Box>
+  );
+}
 
 export function Service() {
   return (
@@ -272,9 +376,9 @@ export function Service() {
         </Container>
       </Box>
 
-      {/* ── SERVICE GALLERY ── */}
+      {/* ── SERVICE SLIDESHOW ── */}
       <Box py="5rem" style={{ background: '#f8f9fc' }}>
-        <Container size="xl">
+        <Container size="md">
           <Stack align="center" mb="3rem" gap="sm">
             <Title order={2} className={classes.sectionTitle}>Service in Action</Title>
             <Divider color="#c9a84c" maw={80} />
@@ -282,34 +386,7 @@ export function Service() {
               A look at the work our members do across all four areas of service.
             </Text>
           </Stack>
-          <SimpleGrid cols={{ base: 1, xs: 2, md: 4 }} spacing="md">
-            {servicePhotos.map(photo => (
-              <Box key={photo.id} className={classes.photoCard}>
-                <Box className={classes.photoImage} style={{ background: photo.gradient }} />
-                {/* Static "Picture" label centered on the card */}
-                <Box className={classes.photoLabel}>
-                  <Text size="xs" c="rgba(255,255,255,0.45)" style={{ letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                    Picture
-                  </Text>
-                </Box>
-                {/* Hover overlay reveals domain + blank caption line */}
-                <Box className={classes.photoOverlay}>
-                  <Text size="sm" fw={600} c="white" lh={1.5}>
-                    {photo.domain}: _______________
-                  </Text>
-                </Box>
-                <Badge
-                  className={classes.photoBadge}
-                  color={photo.badgeColor}
-                  variant="filled"
-                  size="xs"
-                  radius="sm"
-                >
-                  {photo.domain}
-                </Badge>
-              </Box>
-            ))}
-          </SimpleGrid>
+          <ServiceSlideshow />
         </Container>
       </Box>
 

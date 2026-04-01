@@ -76,29 +76,27 @@
   font-size: 1rem !important;
 }
 
-/* ── SERVICE GALLERY ── */
-.photoCard {
+/* ── SERVICE SLIDESHOW ── */
+.slideshowWrap {
   position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  aspect-ratio: 1;
-  cursor: default;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
-.photoCard:hover .photoOverlay {
+.slideshowCard {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  cursor: default;
+  box-shadow: 0 12px 40px rgba(26, 39, 68, 0.18);
+}
+
+.slideshowCard:hover .photoOverlay {
   opacity: 1;
 }
 
-.photoCard:hover .photoImage {
-  transform: scale(1.05);
-}
-
-.photoImage {
-  width: 100%;
-  height: 100%;
-  transition: transform 0.35s ease;
-}
-
+/* "Picture" label — centered, always visible */
 .photoLabel {
   position: absolute;
   inset: 0;
@@ -106,21 +104,74 @@
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  z-index: 1;
 }
 
+/* Overlay slides up on hover */
 .photoOverlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(17, 27, 51, 0.88) 0%, transparent 55%);
   display: flex;
   align-items: flex-end;
-  padding: 1rem;
+  padding: 1.25rem 1.5rem;
   opacity: 0;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.3s ease;
+  z-index: 2;
 }
 
+/* Domain badge top-left */
 .photoBadge {
   position: absolute !important;
-  top: 0.65rem;
-  left: 0.65rem;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 3;
+}
+
+/* Arrow buttons */
+.slideshowArrow {
+  position: absolute !important;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #fff !important;
+  transition: background 0.2s ease, transform 0.2s ease !important;
+}
+
+.slideshowArrow:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-50%) scale(1.08) !important;
+}
+
+.slideshowArrowLeft {
+  left: 0.75rem;
+}
+
+.slideshowArrowRight {
+  right: 0.75rem;
+}
+
+/* Dot indicators */
+.slideshowDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.slideshowDotActive {
+  background: #c9a84c;
+  transform: scale(1.35);
+}
+
+.slideshowDotInactive {
+  background: rgba(26, 39, 68, 0.2);
+}
+
+.slideshowDotInactive:hover {
+  background: rgba(26, 39, 68, 0.4);
 }
