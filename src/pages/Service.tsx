@@ -378,7 +378,7 @@ export function Service() {
 
       {/* ── SERVICE SLIDESHOW ── */}
       <Box py="5rem" style={{ background: '#f8f9fc' }}>
-        <Container size="md">
+        <Container size="xl">
           <Stack align="center" mb="3rem" gap="sm">
             <Title order={2} className={classes.sectionTitle}>Service in Action</Title>
             <Divider color="#c9a84c" maw={80} />
