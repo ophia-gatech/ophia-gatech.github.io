@@ -162,7 +162,7 @@ export function Service() {
       />
 
       {/* ── SERVICE MISSION ── */}
-      <Box py="5rem" style={{ background: '#f8f9fc' }}>
+      <Box py="3rem" style={{ background: '#f8f9fc' }}>
         <Container size="xl">
           <SimpleGrid cols={{ base: 1, md: 2 }} spacing="4rem" style={{ alignItems: 'center' }}>
             <Stack gap="md">
@@ -213,7 +213,7 @@ export function Service() {
       </Box>
 
       {/* ── PERMANENT SERVICE PROJECT ── */}
-      <Box py="5rem" style={{ background: '#fff' }}>
+      <Box py="3rem" style={{ background: '#fff' }}>
         <Container size="xl">
           <Stack align="center" mb="3rem" gap="sm">
             <Badge variant="filled" color="gold" size="sm" radius="xl">Permanent Service Project</Badge>
@@ -282,7 +282,7 @@ export function Service() {
       </Box>
 
       {/* ── PRESIDENT'S PROJECT ── */}
-      <Box py="5rem" style={{ background: '#f8f9fc' }}>
+      <Box py="3rem" style={{ background: '#f8f9fc' }}>
         <Container size="xl">
           <Stack align="center" mb="3rem" gap="sm">
             <Badge variant="filled" color="navy" size="sm" radius="xl">President's Project</Badge>
@@ -351,7 +351,7 @@ export function Service() {
       </Box>
 
       {/* ── MORE WAYS WE SERVE ── */}
-      <Box py="5rem" style={{ background: '#fff' }}>
+      <Box py="3rem" style={{ background: '#fff' }}>
         <Container size="xl">
           <Stack align="center" mb="3rem" gap="sm">
             <Title order={2} className={classes.sectionTitle}>More Ways We Serve</Title>
@@ -377,7 +377,7 @@ export function Service() {
       </Box>
 
       {/* ── SERVICE SLIDESHOW ── */}
-      <Box py="5rem" style={{ background: '#f8f9fc' }}>
+      <Box py="3rem" style={{ background: '#f8f9fc' }}>
         <Container size="xl">
           <Stack align="center" mb="3rem" gap="sm">
             <Title order={2} className={classes.sectionTitle}>Service in Action</Title>
