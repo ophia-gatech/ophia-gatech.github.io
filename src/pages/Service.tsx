@@ -4,32 +4,32 @@ import {
   Badge, Button, Group, Divider, ThemeIcon, List,
 } from '@mantine/core';
 import {
-  IconHeart, IconUsers, IconArrowRight, IconLeaf,
-  IconBook, IconHeartHandshake, IconCheck,
+  IconHeart, IconUsers, IconArrowRight, IconSchool,
+  IconWorld, IconCheck,
 } from '@tabler/icons-react';
 import { PageHero } from '../components/layout/PageHero';
 import classes from './Service.module.css';
 
 const otherWays = [
   {
-    icon: <IconLeaf size={22} />,
-    title: 'Environmental Stewardship',
-    desc: 'Campus clean-ups, tree planting drives, and sustainability initiatives that keep our community green.',
-  },
-  {
-    icon: <IconBook size={22} />,
-    title: 'Literacy & Education',
-    desc: 'Tutoring programs and literacy workshops that give students of all ages the tools to thrive.',
+    icon: <IconSchool size={22} />,
+    title: 'University Community',
+    desc: 'Serving the students, faculty, and staff around us — through campus initiatives, resource drives, awareness events, and programs that strengthen life on campus.',
   },
   {
     icon: <IconUsers size={22} />,
-    title: 'Hunger Relief',
-    desc: 'Food bank volunteering, supply drives, and community pantry support to fight food insecurity.',
+    title: 'Community at Large',
+    desc: 'Reaching beyond campus to support our broader community through food banks, family services, neighborhood clean-ups, and local nonprofit partnerships.',
   },
   {
-    icon: <IconHeartHandshake size={22} />,
-    title: 'Senior Outreach',
-    desc: 'Arts workshops, companionship visits, and activity programming for residents at local senior centers.',
+    icon: <IconHeart size={22} />,
+    title: 'Members of the Sorority',
+    desc: 'Taking care of each other. We invest in our own members through wellness programming, mutual support, and creating a chapter culture where everyone can thrive.',
+  },
+  {
+    icon: <IconWorld size={22} />,
+    title: 'Nations of the World',
+    desc: 'Thinking globally and acting locally. We support international causes, raise awareness of global issues, and fundraise for organizations working across borders.',
   },
 ];
 
@@ -39,7 +39,7 @@ export function Service() {
       <PageHero
         eyebrow="Making a Difference"
         title="Service"
-        subtitle="Service is not just what we do — it's who we are. From our chapter's founding in 1967, giving back has been at the heart of everything Nu Chapter stands for."
+        subtitle="Service is not just what we do — it's who we are. We were founded in 1988, and giving back has been at the heart of everything Nu Chapter stands for ever since."
       />
 
       {/* ── SERVICE MISSION ── */}
@@ -58,10 +58,10 @@ export function Service() {
                 families in our local community. We believe that meaningful change starts with showing up.
               </Text>
               <Text c="dimmed" lh={1.8}>
-                Our service portfolio is organized around two anchor commitments — a <strong>Permanent
-                Service Project</strong> designated at the national level, and a <strong>President's
-                Project</strong> chosen each term — supplemented by ongoing chapter-driven initiatives
-                throughout the year.
+                Our service reaches four areas: the <strong>university community</strong>, the{' '}
+                <strong>community at large</strong>, the <strong>members of the sorority</strong>, and
+                the <strong>nations of the world</strong> — ensuring our impact is felt close to home
+                and far beyond it.
               </Text>
               <Button
                 component={Link}
@@ -78,10 +78,10 @@ export function Service() {
             </Stack>
             <SimpleGrid cols={2} spacing="md">
               {[
-                { value: '200+', label: 'Service hours per semester' },
-                { value: '10+',  label: 'Partner organizations'      },
-                { value: '15',   label: 'Min. hours per member'      },
-                { value: '1967', label: 'Year Nu Chapter was founded' },
+                { value: '500+', label: 'Service hours per semester'  },
+                { value: '10+',  label: 'Partner organizations'       },
+                { value: '20',   label: 'Min. hours per member'       },
+                { value: '4',    label: 'Areas of service impact'     },
               ].map(s => (
                 <Paper key={s.label} className={classes.miniStat} p="lg" radius="lg" shadow="xs">
                   <Text className={classes.miniStatValue}>{s.value}</Text>
@@ -231,15 +231,14 @@ export function Service() {
         </Container>
       </Box>
 
-      {/* ── OTHER WAYS WE SERVE ── */}
+      {/* ── MORE WAYS WE SERVE ── */}
       <Box py="5rem" style={{ background: '#fff' }}>
         <Container size="xl">
           <Stack align="center" mb="3rem" gap="sm">
             <Title order={2} className={classes.sectionTitle}>More Ways We Serve</Title>
             <Divider color="#c9a84c" maw={80} />
             <Text c="dimmed" ta="center" maw={540}>
-              Beyond our anchor projects, Nu Chapter members give back through a rotating portfolio
-              of community-driven initiatives each semester.
+              Our service reaches every level — from the people right beside us to communities across the globe.
             </Text>
           </Stack>
           <SimpleGrid cols={{ base: 1, xs: 2, md: 4 }} spacing="lg">
