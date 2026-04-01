@@ -87,7 +87,7 @@
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  aspect-ratio: 14 / 8;
+  aspect-ratio: 17 / 8;
   cursor: default;
   box-shadow: 0 12px 40px rgba(26, 39, 68, 0.18);
 }
