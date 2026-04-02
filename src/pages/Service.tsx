@@ -289,8 +289,8 @@ export function Service() {
             <Title order={2} className={classes.sectionTitle} ta="center">Strengthening Families</Title>
             <Divider color="#c9a84c" maw={80} />
             <Text c="dimmed" ta="center" maw={600} lh={1.7}>
-              Each term, the national President of Omega Phi Alpha selects a focus project that reflects
-              the organization's current values and priorities. This semester, the President's Project is
+              Every two years, the national President of Omega Phi Alpha selects a focus project at the national convention, reflecting
+              the organization's current values and priorities. This cycle, the President's Project is
               dedicated to strengthening families.
             </Text>
           </Stack>

@@ -46,6 +46,7 @@
   font-family: 'Playfair Display', serif;
   flex-shrink: 0;
   line-height: 1;
+  padding-bottom: 3px;
 }
 
 .connectCard {
