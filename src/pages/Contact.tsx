@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import {
   Box, Container, Title, Text, SimpleGrid, Paper, Stack,
   TextInput, Textarea, Select, Button, Alert, Group, Divider, Anchor,
@@ -18,6 +18,13 @@ export function Contact() {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [searchParams]        = useSearchParams();
+
+  // Pre-fill subject from URL param (e.g. /contact?subject=partnerships)
+  useEffect(() => {
+    const s = searchParams.get('subject');
+    if (s) setSubject(s);
+  }, [searchParams]);
 
   // Web3Forms integration — get a free access key at https://web3forms.com
   const WEB3FORMS_KEY = '83e0ef36-8ef0-4052-9a87-9af93815b2cc';

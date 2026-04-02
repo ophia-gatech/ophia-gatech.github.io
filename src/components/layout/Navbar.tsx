@@ -13,17 +13,30 @@ const links = [
   { to: '/contact', label: 'Contact'    },
 ];
 
-// Section-level search index — path + optional hash for in-page scrolling
+// Section-level search index — path + optional hash + optional subject pre-fill for contact
 const searchIndex = [
-  { path: '/',            hash: '',       keywords: ['home', 'welcome', 'about', 'pillars', 'testimonials', 'omega phi alpha', 'nu chapter'] },
-  { path: '/service',     hash: '',       keywords: ['service', 'volunteer', 'hours', 'service in action', 'slideshow'] },
-  { path: '/service',     hash: '',       keywords: ['mental health', 'permanent project', 'awareness'] },
-  { path: '/service',     hash: '',       keywords: ['strengthening families', 'president project', 'families'] },
-  { path: '/join',        hash: 'why',    keywords: ['why join', 'benefits', 'sisterhood', 'leadership skills'] },
-  { path: '/join',        hash: 'rush',   keywords: ['rush', 'recruitment', 'bid day', 'rose night', 'join', 'membership', 'requirements'] },
-  { path: '/team',        hash: '',       keywords: ['team', 'officers', 'leadership', 'exec board', 'president', 'treasurer', 'secretary', 'board'] },
-  { path: '/contact',     hash: '',       keywords: ['contact', 'email', 'message', 'location', 'meeting', 'instagram', 'facebook', 'reach out'] },
+  { path: '/',        hash: '',      subject: '',              keywords: ['home', 'welcome', 'about', 'pillars', 'testimonials', 'omega phi alpha', 'nu chapter', 'who are you', 'what is ophia'] },
+  { path: '/service', hash: '',      subject: '',              keywords: ['service', 'volunteer', 'hours', 'serve', 'volunteering', 'service project', 'giving back', 'community service'] },
+  { path: '/service', hash: '',      subject: '',              keywords: ['mental health', 'awareness', 'counseling', 'wellness', 'well being'] },
+  { path: '/service', hash: '',      subject: '',              keywords: ['families', 'strengthening families', 'family', 'president project'] },
+  { path: '/join',    hash: 'why',   subject: '',              keywords: ['why join', 'benefits', 'reason', 'why should i', 'what do i get'] },
+  { path: '/join',    hash: 'rush',  subject: '',              keywords: ['join', 'rush', 'recruit', 'recruitment', 'pledge', 'bid day', 'rose night', 'become a member', 'how do i join', 'sign up', 'membership', 'requirements', 'new member'] },
+  { path: '/team',    hash: '',      subject: '',              keywords: ['team', 'officers', 'leadership', 'exec', 'board', 'president', 'treasurer', 'secretary', 'who leads', 'who runs', 'members'] },
+  { path: '/contact', hash: '',      subject: '',              keywords: ['contact', 'email', 'location', 'meeting', 'instagram', 'facebook', 'reach out', 'get in touch', 'find you'] },
+  { path: '/contact', hash: '',      subject: 'partnerships',  keywords: ['partner', 'partnership', 'collaborate', 'work together', 'organization', 'sponsor', 'nonprofit'] },
+  { path: '/contact', hash: '',      subject: 'recruitment',   keywords: ['question about joining', 'rush question', 'rush info', 'joining question'] },
+  { path: '/contact', hash: '',      subject: 'service',       keywords: ['service opportunity', 'volunteer opportunity', 'service question'] },
+  { path: '/contact', hash: '',      subject: 'general',       keywords: ['question', 'ask', 'inquiry', 'info', 'information', 'help', 'hello', 'hi'] },
 ];
+
+// Strip common question/filler phrases before matching
+function normalise(q: string) {
+  return q
+    .toLowerCase()
+    .replace(/^(how do i|how to|how can i|what is|what are|where is|where can i|when is|can i|do you have|tell me about|i want to|i need to|show me|what about|i have a)\s+/i, '')
+    .replace(/[?!.,]+$/, '')
+    .trim();
+}
 
 function NavSearch() {
   const [query, setQuery]       = useState('');
@@ -42,10 +55,10 @@ function NavSearch() {
   };
 
   const go = () => {
-    const lower = query.toLowerCase().trim();
-    if (!lower) return;
-    // Match if any keyword contains the query word OR any query word contains a keyword
-    const words = lower.split(/\s+/);
+    const raw   = query.trim();
+    if (!raw) return;
+    const lower = normalise(raw);
+    const words = lower.split(/\s+/).filter(w => w.length > 2);
     const match = searchIndex.find(item =>
       item.keywords.some(k =>
         k.includes(lower) ||
@@ -54,7 +67,9 @@ function NavSearch() {
       )
     );
     if (match) {
-      navigate(match.hash ? `${match.path}#${match.hash}` : match.path);
+      let dest = match.hash ? `${match.path}#${match.hash}` : match.path;
+      if (match.subject) dest = `${match.path}?subject=${match.subject}`;
+      navigate(dest);
       setQuery('');
       setExpanded(false);
       setNotFound(false);
