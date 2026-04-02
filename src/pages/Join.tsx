@@ -30,10 +30,10 @@ const whyJoin = [
 ];
 
 const steps = [
-  { n: 1, title: 'Volunteer Event',         desc: 'Kick things off by volunteering alongside us during rush week! It is your first look at who we are in action, and honestly? It is a blast. Come ready to serve, connect, and have fun.' },
-  { n: 2, title: 'Bid Day',                 desc: 'This is the moment. Receive your official invitation to join Nu Chapter on one of the most exciting days of the year. Expect big energy, happy tears, and an unforgettable welcome into the sisterhood.' },
-  { n: 3, title: 'New Member Education',    desc: 'Get ready to go deep. This is where you truly learn what it means to be a sister of Omega Phi Alpha: our history, our values, our rituals, and the bonds that will last a lifetime.' },
-  { n: 4, title: 'Rose Night!',             desc: 'The night everything becomes official. Rose Night is a beautiful, meaningful ceremony where you cross into full membership. It is everything you have worked toward, and it is absolutely worth it.' },
+  { n: 1, title: 'Volunteer Event',         desc: 'Join us for a hands-on service event during rush week and experience Nu Chapter firsthand. This is your opportunity to see our values in action and connect with the women who bring them to life.' },
+  { n: 2, title: 'Bid Day',                 desc: 'Receive your formal invitation to become a member of Nu Chapter. Bid Day is one of our most cherished traditions and marks the beginning of your journey into the sisterhood.' },
+  { n: 3, title: 'New Member Education',    desc: 'Deepen your understanding of Omega Phi Alpha through a meaningful program rooted in our history, values, and rituals. This is where lasting friendships and lasting commitments are formed.' },
+  { n: 4, title: 'Rose Night!',             desc: 'The culmination of your new member journey. Rose Night is a beautiful, time-honored ceremony in which you are officially welcomed as a full sister of Omega Phi Alpha.' },
 ];
 
 const requirements = [
