@@ -172,7 +172,7 @@ export function Service() {
               </Title>
               <Divider color="#c9a84c" maw={60} />
               <Text c="dimmed" lh={1.8}>
-                Every semester, Nu Chapter members collectively log hundreds of volunteer hours across
+                Every semester, the members of Omega Phi Alpha's Nu Chapter collectively log hundreds of volunteer hours across
                 a wide range of causes, from supporting mental health awareness to strengthening
                 families in our local community. We believe that meaningful change starts with showing up.
               </Text>
@@ -289,8 +289,8 @@ export function Service() {
             <Title order={2} className={classes.sectionTitle} ta="center">Strengthening Families</Title>
             <Divider color="#c9a84c" maw={80} />
             <Text c="dimmed" ta="center" maw={600} lh={1.7}>
-              Each term, Nu Chapter's President selects a focus project that reflects our chapter's
-              current values and community needs. This semester, our President's Project is
+              Each term, the national President of Omega Phi Alpha selects a focus project that reflects
+              the organization's current values and priorities. This semester, the President's Project is
               dedicated to strengthening families.
             </Text>
           </Stack>
