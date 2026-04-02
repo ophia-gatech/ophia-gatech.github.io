@@ -399,7 +399,7 @@ export function Service() {
               <Title order={3} style={{ color: '#fff', marginBottom: '0.25rem', fontFamily: 'Playfair Display, serif' }}>
                 Ready to make a real impact?
               </Title>
-              <Text c="dimmed">Rush week for next semester is coming up. We would love to see you there.</Text>
+              <Text c="dimmed">Next semester, those service hours could be yours. Come rush with us!</Text>
             </Box>
             <Button
               component={Link}
