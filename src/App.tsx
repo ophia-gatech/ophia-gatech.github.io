@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { AppShell } from '@mantine/core';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
+import { ScrollToTop } from './components/ScrollToTop';
 import { Home } from './pages/Home';
 import { Team } from './pages/Team';
 import { Join } from './pages/Join';
@@ -12,6 +13,7 @@ import { Contact } from './pages/Contact';
 export default function App() {
   return (
     <AppShell header={{ height: 72 }} padding={0}>
+      <ScrollToTop />
       <AppShell.Header>
         <Navbar />
       </AppShell.Header>

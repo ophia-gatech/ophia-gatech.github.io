@@ -61,14 +61,10 @@ export function Footer() {
           {/* Get Involved */}
           <Stack gap={6}>
             <Text className={classes.colTitle}>Get Involved</Text>
-            {[
-              { to: '/join#rush',    label: 'Rush & Recruitment' },
-              { to: '/join#why',    label: 'Why Join?'           },
-              { to: 'https://www.facebook.com/omegaphialphagt', label: 'Find us on Facebook' },
-              { to: '/contact',     label: 'Partner With Us'     },
-            ].map(l => (
-              <Anchor key={l.label} component={Link} to={l.to} className={classes.footerLink}>{l.label}</Anchor>
-            ))}
+            <Anchor component={Link} to="/join#rush" className={classes.footerLink}>Rush &amp; Recruitment</Anchor>
+            <Anchor component={Link} to="/join#why" className={classes.footerLink}>Why Join?</Anchor>
+            <Anchor href="https://www.facebook.com/omegaphialphagt" target="_blank" rel="noopener noreferrer" className={classes.footerLink}>Find us on Facebook</Anchor>
+            <Anchor component={Link} to="/contact" className={classes.footerLink}>Partner With Us</Anchor>
           </Stack>
 
           {/* Contact */}
