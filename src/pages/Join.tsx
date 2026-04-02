@@ -30,10 +30,10 @@ const whyJoin = [
 ];
 
 const steps = [
-  { n: 1, title: 'Volunteer Event',         desc: 'Attend a volunteering event with OPhiA during rush week. It is a great way to see our chapter in action and get a feel for what we are all about.' },
-  { n: 2, title: 'Bid Day',                 desc: 'Receive your formal invitation to join Nu Chapter. Bid Day is one of our most celebrated traditions, a joyful welcome into the sisterhood.' },
-  { n: 3, title: 'New Member Education',    desc: 'A structured yet enriching program that deepens your understanding of our history, values, and rituals, and bonds you with your pledge class.' },
-  { n: 4, title: 'Rose Night!',             desc: 'The moment you officially become a sister. Rose Night is a cherished ceremony celebrating your journey into full membership in Omega Phi Alpha.' },
+  { n: 1, title: 'Volunteer Event',         desc: 'Kick things off by volunteering alongside us during rush week! It is your first look at who we are in action, and honestly? It is a blast. Come ready to serve, connect, and have fun.' },
+  { n: 2, title: 'Bid Day',                 desc: 'This is the moment. Receive your official invitation to join Nu Chapter on one of the most exciting days of the year. Expect big energy, happy tears, and an unforgettable welcome into the sisterhood.' },
+  { n: 3, title: 'New Member Education',    desc: 'Get ready to go deep. This is where you truly learn what it means to be a sister of Omega Phi Alpha: our history, our values, our rituals, and the bonds that will last a lifetime.' },
+  { n: 4, title: 'Rose Night!',             desc: 'The night everything becomes official. Rose Night is a beautiful, meaningful ceremony where you cross into full membership. It is everything you have worked toward, and it is absolutely worth it.' },
 ];
 
 const requirements = [
@@ -106,7 +106,7 @@ export function Join() {
               <Stack gap="xl">
                 {steps.map(step => (
                   <Group key={step.n} gap="lg" align="flex-start" wrap="nowrap">
-                    <Box className={classes.stepNumber} />
+                    <Box className={classes.stepNumber}>{step.n}</Box>
                     <Box>
                       <Text fw={700} mb={4} style={{ color: '#1a2744' }}>{step.title}</Text>
                       <Text c="dimmed" size="sm" lh={1.7}>{step.desc}</Text>
