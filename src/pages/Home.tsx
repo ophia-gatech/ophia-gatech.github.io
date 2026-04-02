@@ -73,9 +73,9 @@ const testimonials = [
   },
   {
     quote:
-      '"Nu Chapter pushed me to step outside my comfort zone. I went from being shy to leading a 40-person volunteer project, and I loved every second of it."',
-    name: 'Member Name',
-    role: 'Active Member · Senior',
+      '"We have a bunch of service projects that are all fun to do, and the people here are all super nice."',
+    name: 'Andrea Kim',
+    role: 'Active Member · Sophomore',
   },
   {
     quote:
