@@ -30,10 +30,10 @@ const whyJoin = [
 ];
 
 const steps = [
-  { n: 1, title: 'Attend an Info Session',     desc: 'Come learn about who we are, what we do, and why our members love being part of Nu Chapter. No commitment required. Just show up with your curiosity.' },
-  { n: 2, title: 'Rush Week Events',            desc: 'Participate in a week of social events, service activities, and meet-and-greets with current members. This is your opportunity to experience our chapter culture firsthand.' },
-  { n: 3, title: 'Bid Day',                     desc: 'Receive your formal invitation to join Nu Chapter. Bid Day is one of our most celebrated traditions, a joyful welcome into the sisterhood.' },
-  { n: 4, title: 'New Member Education',        desc: 'A structured yet enriching semester-long program that deepens your understanding of our history, values, and rituals, and bonds you with your pledge class.' },
+  { n: 1, title: 'Volunteer Event',         desc: 'Attend a volunteering event with OPhiA during rush week. It is a great way to see our chapter in action and get a feel for what we are all about.' },
+  { n: 2, title: 'Bid Day',                 desc: 'Receive your formal invitation to join Nu Chapter. Bid Day is one of our most celebrated traditions, a joyful welcome into the sisterhood.' },
+  { n: 3, title: 'New Member Education',    desc: 'A structured yet enriching program that deepens your understanding of our history, values, and rituals, and bonds you with your pledge class.' },
+  { n: 4, title: 'Rose Night!',             desc: 'The moment you officially become a sister. Rose Night is a cherished ceremony celebrating your journey into full membership in Omega Phi Alpha.' },
 ];
 
 const requirements = [
