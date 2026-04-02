@@ -6,7 +6,7 @@ import {
 } from '@mantine/core';
 import {
   IconMail, IconBrandInstagram, IconBrandFacebook, IconMapPin, IconClock,
-  IconBrandSlack, IconCheck, IconArrowRight,
+  IconCheck, IconArrowRight,
 } from '@tabler/icons-react';
 import { PageHero } from '../components/layout/PageHero';
 import classes from './Contact.module.css';
@@ -189,15 +189,6 @@ export function Contact() {
                   icon: <IconClock size={20} />,
                   label: 'Chapter Meetings',
                   content: <Text size="sm">Every Tuesday, 7:00 PM</Text>,
-                },
-                {
-                  icon: <IconBrandSlack size={20} />,
-                  label: 'Slack Community',
-                  content: (
-                    <Anchor component={Link} to="/join#connect" className={classes.infoLink}>
-                      Join our Slack workspace →
-                    </Anchor>
-                  ),
                 },
               ].map(item => (
                 <Paper key={item.label} p="md" radius="md" className={classes.infoCard}>

@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { Group, Text, Box, Burger, Drawer, Stack, TextInput, Paper } from '@mantine/core';
+import { Group, Text, Box, Burger, Drawer, Stack } from '@mantine/core';
 import { useDisclosure, useWindowScroll } from '@mantine/hooks';
 import { IconSearch } from '@tabler/icons-react';
 import classes from './Navbar.module.css';
@@ -13,74 +13,65 @@ const links = [
   { to: '/contact', label: 'Contact'    },
 ];
 
+// Section-level search index — path + optional hash for in-page scrolling
 const searchIndex = [
-  { path: '/',        label: 'Home',       keywords: ['home', 'about', 'welcome', 'omega phi alpha', 'nu chapter', 'pillars', 'testimonials'] },
-  { path: '/service', label: 'Service',    keywords: ['service', 'volunteer', 'mental health', 'community', 'hours', 'project', 'families', 'service director'] },
-  { path: '/join',    label: 'Sisterhood', keywords: ['join', 'rush', 'recruitment', 'sisterhood', 'membership', 'bid day', 'rose night', 'requirements'] },
-  { path: '/team',    label: 'Leadership', keywords: ['leadership', 'team', 'officers', 'president', 'exec', 'board', 'treasurer', 'secretary'] },
-  { path: '/contact', label: 'Contact',    keywords: ['contact', 'email', 'message', 'reach out', 'location', 'meeting', 'instagram'] },
+  { path: '/',            hash: '',       keywords: ['home', 'welcome', 'about', 'pillars', 'testimonials', 'omega phi alpha', 'nu chapter'] },
+  { path: '/service',     hash: '',       keywords: ['service', 'volunteer', 'hours', 'service in action', 'slideshow'] },
+  { path: '/service',     hash: '',       keywords: ['mental health', 'permanent project', 'awareness'] },
+  { path: '/service',     hash: '',       keywords: ['strengthening families', 'president project', 'families'] },
+  { path: '/join',        hash: 'why',    keywords: ['why join', 'benefits', 'sisterhood', 'leadership skills'] },
+  { path: '/join',        hash: 'rush',   keywords: ['rush', 'recruitment', 'bid day', 'rose night', 'join', 'membership', 'requirements'] },
+  { path: '/team',        hash: '',       keywords: ['team', 'officers', 'leadership', 'exec board', 'president', 'treasurer', 'secretary', 'board'] },
+  { path: '/contact',     hash: '',       keywords: ['contact', 'email', 'message', 'location', 'meeting', 'instagram', 'facebook', 'reach out'] },
 ];
 
 function NavSearch() {
-  const [query, setQuery] = useState('');
-  const [open, setOpen]   = useState(false);
-  const navigate          = useNavigate();
-  const wrapRef           = useRef<HTMLDivElement>(null);
+  const [query, setQuery]       = useState('');
+  const [expanded, setExpanded] = useState(false);
+  const navigate                = useNavigate();
+  const inputRef                = useRef<HTMLInputElement>(null);
 
-  const results = query.trim().length > 0
-    ? searchIndex.filter(p =>
-        p.label.toLowerCase().includes(query.toLowerCase()) ||
-        p.keywords.some(k => k.includes(query.toLowerCase()))
-      )
-    : [];
+  const expand = () => {
+    setExpanded(true);
+    setTimeout(() => inputRef.current?.focus(), 30);
+  };
 
-  // Close dropdown on outside click
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, []);
+  const collapse = () => {
+    if (!query) setExpanded(false);
+  };
 
-  const go = (path: string) => {
-    navigate(path);
+  const go = () => {
+    const lower = query.toLowerCase().trim();
+    if (!lower) return;
+    const match = searchIndex.find(item =>
+      item.keywords.some(k => k.includes(lower))
+    );
+    if (match) {
+      navigate(match.hash ? `${match.path}#${match.hash}` : match.path);
+    }
     setQuery('');
-    setOpen(false);
+    setExpanded(false);
   };
 
   const handleKey = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && results.length > 0) go(results[0].path);
-    if (e.key === 'Escape') { setOpen(false); setQuery(''); }
+    if (e.key === 'Enter') go();
+    if (e.key === 'Escape') { setQuery(''); setExpanded(false); }
   };
 
   return (
-    <Box ref={wrapRef} style={{ position: 'relative' }}>
-      <TextInput
+    <Box className={`${classes.searchWrap} ${expanded ? classes.searchWrapExpanded : ''}`}>
+      <Box className={classes.searchIcon} onClick={expand} aria-label="Search">
+        <IconSearch size={16} />
+      </Box>
+      <input
+        ref={inputRef}
+        className={`${classes.searchInput} ${expanded ? classes.searchInputExpanded : ''}`}
         placeholder="Search…"
         value={query}
-        onChange={e => { setQuery(e.currentTarget.value); setOpen(true); }}
+        onChange={e => setQuery(e.currentTarget.value)}
         onKeyDown={handleKey}
-        onFocus={() => setOpen(true)}
-        leftSection={<IconSearch size={14} color="rgba(255,255,255,0.6)" />}
-        size="xs"
-        radius="xl"
-        classNames={{ input: classes.searchInput }}
-        style={{ width: 180 }}
+        onBlur={collapse}
       />
-      {open && results.length > 0 && (
-        <Paper
-          radius="md"
-          shadow="md"
-          style={{ position: 'absolute', top: 'calc(100% + 8px)', right: 0, width: 200, zIndex: 1000, overflow: 'hidden' }}
-        >
-          {results.map(r => (
-            <Box key={r.path} className={classes.searchResult} onClick={() => go(r.path)}>
-              <Text size="sm" fw={500} style={{ color: '#1a2744' }}>{r.label}</Text>
-            </Box>
-          ))}
-        </Paper>
-      )}
     </Box>
   );
 }
