@@ -41,7 +41,7 @@ export function Team() {
       />
 
       {/* EXEC BOARD */}
-      <Box py="5rem" style={{ background: '#f8f9fc' }}>
+      <Box pt="5rem" pb="2.5rem" style={{ background: '#f8f9fc' }}>
         <Container size="xl">
           <Stack align="center" mb="3rem" gap="sm">
             <Title order={2} className={classes.sectionTitle}>Executive Board</Title>
@@ -74,20 +74,20 @@ export function Team() {
         </Container>
       </Box>
 
-      {/* MEMBER SPOTLIGHT */}
-      <Box py="5rem">
+      {/* PRESIDENT MESSAGE */}
+      <Box pt="2.5rem" pb="5rem">
         <Container size="xl">
           <Stack align="center" mb="3rem" gap="sm">
-            <Title order={2} className={classes.sectionTitle}>Member Spotlight</Title>
+            <Title order={2} className={classes.sectionTitle}>Hear from Our President</Title>
             <Divider color="#c9a84c" maw={80} />
             <Text c="dimmed" ta="center">
-              Each month we celebrate a member who embodies the spirit of service, sisterhood, and scholarship.
+              A message from the leader of Nu Chapter.
             </Text>
           </Stack>
 
           <Paper className={classes.spotlightCard} radius="lg" shadow="md" style={{ overflow: 'hidden' }}>
             <Group align="stretch" wrap="nowrap" gap={0} className={classes.spotlightInner}>
-              {/* TODO: Replace the placeholder icon with a real headshot of the spotlight member.
+              {/* TODO: Replace the placeholder icon with a real headshot of Deidre.
                    Add the image to /public/images/ and render it with object-fit: cover to fill this panel. */}
               <Box className={classes.spotlightImage}>
                 <Text style={{ fontSize: '5rem', color: 'rgba(201,168,76,0.25)' }}>✦</Text>
@@ -101,7 +101,7 @@ export function Team() {
                   radius="xl"
                   mb="md"
                 >
-                  Member of the Month
+                  Chapter President
                 </Badge>
                 <Title order={2} className={classes.spotlightName}>{spotlight.name}</Title>
                 <Text size="sm" c="dimmed" mb="md">{spotlight.role}</Text>
@@ -114,13 +114,6 @@ export function Team() {
               </Box>
             </Group>
           </Paper>
-
-          <Text ta="center" size="sm" c="dimmed" mt="xl" fs="italic">
-            ★ Updated monthly · Know someone who deserves a spotlight?{' '}
-            <Text component={Link} to="/contact" style={{ color: '#a8872e', fontWeight: 700, textDecoration: 'none' }}>
-              Nominate a member →
-            </Text>
-          </Text>
         </Container>
       </Box>
 

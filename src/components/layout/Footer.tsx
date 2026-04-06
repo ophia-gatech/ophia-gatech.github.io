@@ -61,6 +61,7 @@ export function Footer() {
           {/* Get Involved */}
           <Stack gap={6}>
             <Text className={classes.colTitle}>Get Involved</Text>
+            <Anchor component={Link} to="/service" className={classes.footerLink}>Learn About Our Service</Anchor>
             <Anchor component={Link} to="/join#rush" className={classes.footerLink}>Rush &amp; Recruitment</Anchor>
             <Anchor component={Link} to="/join#why" className={classes.footerLink}>Why Join?</Anchor>
             <Anchor href="https://www.facebook.com/omegaphialphagt" target="_blank" rel="noopener noreferrer" className={classes.footerLink}>Find us on Facebook</Anchor>

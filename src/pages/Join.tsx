@@ -37,12 +37,11 @@ const steps = [
 ];
 
 const requirements = [
-  'Minimum cumulative GPA of 2.5 on a 4.0 scale',
-  'Currently enrolled as a full-time student at an accredited college or university',
-  'Commitment to completing at minimum 15 service hours per semester',
-  'Attendance at the majority of chapter meetings and events (75%+)',
-  'Payment of chapter dues in a timely manner (financial assistance available)',
-  'Genuine passion for service, sisterhood, and scholarship',
+  'A minimum cumulative GPA of 2.0 (undergraduate) or 3.0 (graduate) at the time of pledging',
+  'Current enrollment as a student at Georgia Tech',
+  'Attendance at all chapter meetings, except in cases of an approved excuse',
+  'Payment of chapter dues in a timely manner — financial assistance is available for those who need it',
+  'A genuine passion for service, sisterhood, and scholarship',
   'Agreement to uphold the Omega Phi Alpha National Code of Conduct',
 ];
 

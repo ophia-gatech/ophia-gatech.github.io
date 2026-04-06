@@ -36,10 +36,10 @@ const searchIndex = [
   { path: '/team',    hash: '', subject: '', highlight: 'pr-chair',              keywords: ['public relations', 'pr chair', 'risha', 'risha khanna'] },
   { path: '/team',    hash: '', subject: '', highlight: 'ado',                   keywords: ['district officer', 'active district', 'jasmine', 'jasmine lopez'] },
   { path: '/contact', hash: '',         subject: '', highlight: '', keywords: ['contact', 'email', 'location', 'meeting', 'instagram', 'facebook', 'reach out', 'get in touch', 'find you'] },
-  { path: '/contact', hash: '',         subject: 'partnerships', highlight: '', keywords: ['partner', 'partnership', 'how do i partner', 'collaborate', 'work together', 'organization', 'sponsor', 'nonprofit'] },
+  { path: '/contact', hash: '',         subject: 'partnerships', highlight: '', keywords: ['partner', 'partnership', 'how do i partner', 'collaborate', 'work together', 'organization', 'sponsor', 'nonprofit', 'want to partner', 'looking to partner', 'interested in partnering'] },
   { path: '/contact', hash: '',         subject: 'recruitment', highlight: '', keywords: ['question about joining', 'rush question', 'rush info', 'joining question'] },
   { path: '/contact', hash: '',         subject: 'service', highlight: '', keywords: ['service opportunity', 'volunteer opportunity', 'service question'] },
-  { path: '/contact', hash: '',         subject: 'general', highlight: '', keywords: ['question', 'ask', 'inquiry', 'info', 'information', 'help', 'hello', 'hi'] },
+  { path: '/contact', hash: '',         subject: 'general', highlight: '', keywords: ['general question', 'question', 'ask', 'inquiry', 'info', 'information', 'help', 'hello', 'hi'] },
 ];
 
 // Strip common question/filler phrases before matching

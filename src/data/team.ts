@@ -114,12 +114,11 @@ export const execBoard: ExecMember[] = [
   },
 ];
 
-// TODO: Update this spotlight entry every month with the featured member's real info.
-// Coordinate with the Historian to get the member's preferred quote and bio blurb.
+// TODO: Update this with a real quote and message from Deidre each semester.
 export const spotlight: SpotlightMember = {
-  name: 'Member Name', // TODO: Replace with featured member's real name
-  role: 'Active Member · Junior, Environmental Studies', // TODO: Update year/major
+  name: 'Deidre Schulte',
+  role: 'President, Nu Chapter',
   quote:
-    '"Joining Nu Chapter was the best decision I made in college. The friendships I\'ve formed and the communities we\'ve served have shaped who I am — and who I want to become."',
-  bio: 'This member joined Nu Chapter during their sophomore year and has since logged over 200 individual service hours across a wide range of initiatives — from local food bank drives to campus clean-up events. They recently led a team of volunteers in a week-long literacy tutoring program that reached over 40 elementary school students. Outside of chapter activities, they are passionate about environmental advocacy and serve on the campus sustainability committee.',
+    '"Nu Chapter is a place where you show up, give back, and leave knowing you made a difference — and that you have an incredible group of people behind you every step of the way."',
+  bio: 'As President of Nu Chapter, Deidre is committed to building a chapter rooted in genuine service, strong sisterhood, and meaningful leadership. Her vision for this semester is to deepen the chapter\'s community partnerships, increase member engagement in all four pillars of service, and create an environment where every member feels seen and valued. She looks forward to welcoming new members who share that same passion for making an impact.',
 };

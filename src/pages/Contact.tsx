@@ -20,10 +20,15 @@ export function Contact() {
   const [success, setSuccess] = useState(false);
   const [searchParams]        = useSearchParams();
 
-  // Pre-fill subject from URL param (e.g. /contact?subject=partnerships)
+  // Pre-fill subject from URL param (e.g. /contact?subject=partnerships) and scroll to form
   useEffect(() => {
     const s = searchParams.get('subject');
-    if (s) setSubject(s);
+    if (s) {
+      setSubject(s);
+      setTimeout(() => {
+        document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
   }, [searchParams]);
 
   // Web3Forms integration — get a free access key at https://web3forms.com
@@ -82,7 +87,7 @@ export function Contact() {
           <SimpleGrid cols={{ base: 1, md: 2 }} spacing="4rem">
 
             {/* FORM */}
-            <Paper p="2rem" radius="lg" shadow="xs" style={{ border: '1px solid rgba(26,39,68,0.08)' }}>
+            <Paper id="contact-form" p="2rem" radius="lg" shadow="xs" style={{ border: '1px solid rgba(26,39,68,0.08)' }}>
               <Title order={2} className={classes.formTitle} mb={4}>Send Us a Message</Title>
               <Text size="sm" c="dimmed" mb="xl">We typically respond within 1–2 business days.</Text>
 
