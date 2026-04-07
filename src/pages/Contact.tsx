@@ -208,7 +208,7 @@ export function Contact() {
             </Paper>
 
             {/* INFO */}
-            <Stack gap="lg" justify="flex-start" style={{ display: 'flex', flexDirection: 'column' }}>
+            <Stack gap="xl" justify="flex-start">
               <Box>
                 <Title order={2} className={classes.infoTitle} mb={4}>Get in Touch</Title>
                 <Divider color="#c9a84c" maw={60} mb="md" />
@@ -235,11 +235,11 @@ export function Contact() {
                   content: <Anchor href="https://www.facebook.com/omegaphialphagt" target="_blank" rel="noopener noreferrer" className={classes.infoLink}>omegaphialphagt</Anchor>,
                 },
               ].map(item => (
-                <Paper key={item.label} p="md" radius="md" className={classes.infoCard} style={{ flex: 1 }}>
-                  <Group gap="md" align="flex-start" wrap="nowrap">
+                <Paper key={item.label} p="lg" radius="md" className={classes.infoCard}>
+                  <Group gap="md" align="center" wrap="nowrap">
                     <Box className={classes.infoIcon}>{item.icon}</Box>
                     <Box>
-                      <Text size="xs" fw={700} tt="uppercase" style={{ color: '#a8872e', letterSpacing: '0.08em' }} mb={2}>
+                      <Text size="xs" fw={700} tt="uppercase" style={{ color: '#a8872e', letterSpacing: '0.08em' }} mb={4}>
                         {item.label}
                       </Text>
                       {item.content}
