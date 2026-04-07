@@ -167,11 +167,11 @@ export function Home() {
                 Become a Member
               </Button>
             </Stack>
-            <Box style={{ borderRadius: 16, overflow: 'hidden', boxShadow: '0 12px 40px rgba(26,39,68,0.14)', minHeight: 320 }}>
+            <Box style={{ borderRadius: 16, overflow: 'hidden', boxShadow: '0 12px 40px rgba(26,39,68,0.14)', height: 320 }}>
               <img
                 src="/images/A Legacy of Service.jpg"
                 alt="Nu Chapter sisters"
-                style={{ width: '100%', height: '100%', minHeight: 320, objectFit: 'cover', display: 'block' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
             </Box>
           </SimpleGrid>

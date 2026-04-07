@@ -35,12 +35,15 @@ const otherWays = [
 ];
 
 const servicePhotos = [
-  { id: 'sp1', domain: 'Community at Large',      badgeColor: 'teal',   image: '/images/service/community at large - boo at the zoo.jpg',         caption: 'Boo at the Zoo',          objectPosition: 'center'      },
-  { id: 'sp2', domain: 'Community at Large',      badgeColor: 'teal',   image: '/images/service/community at large - habitat restoration.jpg',     caption: 'Habitat Restoration',     objectPosition: 'center'      },
-  { id: 'sp3', domain: 'Community at Large',      badgeColor: 'teal',   image: '/images/service/community at large - lifeline animal project.jpg', caption: 'Lifeline Animal Project', objectPosition: 'center 50%'  },
-  { id: 'sp4', domain: 'Members of the Sorority', badgeColor: 'gold',   image: '/images/service/mem of sorority.jpg',                              caption: 'Self-Defense Training',   objectPosition: 'center'      },
-  { id: 'sp5', domain: 'Nations of the World',    badgeColor: 'violet', image: '/images/service/nations of the world - Books for Africa.jpg',      caption: 'Books for Africa',        objectPosition: 'center'      },
-  { id: 'sp6', domain: 'Nations of the World',    badgeColor: 'violet', image: '/images/service/nations of the world 2 - Gift of Life Tabling.jpg',caption: 'Gift of Life Tabling',    objectPosition: 'center'      },
+  { id: 'sp1', domain: 'University Community',    badgeColor: 'navy',   image: '/images/service/university community - community garden.jpg',      caption: 'Community Garden',        objectPosition: 'center'      },
+  { id: 'sp2', domain: 'Community at Large',      badgeColor: 'teal',   image: '/images/service/community at large - boo at the zoo.jpg',          caption: 'Boo at the Zoo',          objectPosition: 'center'      },
+  { id: 'sp3', domain: 'Community at Large',      badgeColor: 'teal',   image: '/images/service/community at large - habitat restoration.jpg',      caption: 'Habitat Restoration',     objectPosition: 'center'      },
+  { id: 'sp4', domain: 'Community at Large',      badgeColor: 'teal',   image: '/images/service/community at large - lifeline animal project.jpg',  caption: 'Lifeline Animal Project', objectPosition: 'center 30%'  },
+  { id: 'sp5', domain: 'Community at Large',      badgeColor: 'teal',   image: '/images/service/COMMunity at large - love letters for literacy.jpg', caption: 'Love Letters for Literacy', objectPosition: 'center'   },
+  { id: 'sp6', domain: 'Members of the Sorority', badgeColor: 'gold',   image: '/images/service/mem of sorority.jpg',                               caption: 'Self-Defense Training',   objectPosition: 'center'      },
+  { id: 'sp7', domain: 'Members of the Sorority', badgeColor: 'gold',   image: '/images/service/mem of sorority - letters to LGBTQ+ org.jpg',       caption: 'Letters to LGBTQ+ Organizations', objectPosition: 'center' },
+  { id: 'sp8', domain: 'Nations of the World',    badgeColor: 'violet', image: '/images/service/nations of the world - Books for Africa.jpg',       caption: 'Books for Africa',        objectPosition: 'center'      },
+  { id: 'sp9', domain: 'Nations of the World',    badgeColor: 'violet', image: '/images/service/nations of the world 2 - Gift of Life Tabling.jpg', caption: 'Gift of Life Tabling',    objectPosition: 'center'      },
 ];
 
 function ServiceSlideshow() {
