@@ -167,15 +167,13 @@ export function Home() {
                 Become a Member
               </Button>
             </Stack>
-            {/* TODO: Replace this placeholder with a real chapter photo (group shot, service event, etc.)
-                 Add the image to /public/images/ and render it with an <img> or Mantine <Image> component. */}
-            <Paper className={classes.aboutPlaceholder} radius="lg" p="xl">
-              <Stack align="center" justify="center" h="100%" gap="sm">
-                <Text style={{ fontSize: '4rem', opacity: 0.3 }}>✦</Text>
-                <Badge color="gold" size="lg" radius="xl">Co-Ed Service Sorority</Badge>
-                <Text size="sm" c="dimmed">Since 1967</Text>
-              </Stack>
-            </Paper>
+            <Box style={{ borderRadius: 16, overflow: 'hidden', boxShadow: '0 12px 40px rgba(26,39,68,0.14)' }}>
+              <img
+                src="/images/A Legacy of Service.jpg"
+                alt="Nu Chapter sisters"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
+            </Box>
           </SimpleGrid>
         </Container>
       </Box>
