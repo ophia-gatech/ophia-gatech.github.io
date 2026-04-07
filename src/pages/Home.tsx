@@ -67,21 +67,24 @@ const pillars = [
 const testimonials = [
   {
     quote:
-      '"Joining Nu Chapter was the best decision I made in college. The friendships, the service work, the growth. I came in looking for community and found a second family."',
-    name: 'Member Name',
-    role: 'Active Member · Junior',
+      '"I love being a part of OPhiA because it\'s full of driven, kind-hearted women who want the best for each other and their community! I love that I can safely volunteer with a group of girls who care for me as a friend and support my development as a student and leader!!"',
+    name: 'Nem Rentz',
+    role: 'Membership Director · Senior',
+    center: false,
   },
   {
     quote:
       '"We have a bunch of service projects that are all fun to do, and the people here are all super nice."',
     name: 'Andrea Kim',
     role: 'Active Member · Sophomore',
+    center: true,
   },
   {
     quote:
-      '"The leadership experience alone was worth it. Running for exec board developed skills I use every day in my internship and classes. OPA prepared me for the real world."',
+      '"Running for exec board was worth it. The skills I built — communicating with organizations, managing projects, leading a team — show up every day in my classes and internship. OPA genuinely prepared me for the real world."',
     name: 'Anika Tapshalkar',
     role: 'Outreach Chair · Freshman',
+    center: false,
   },
 ];
 
@@ -262,9 +265,9 @@ export function Home() {
           <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="lg">
             {testimonials.map((t, i) => (
               <Paper key={i} className={classes.testimonialCard} p="xl" radius="lg" shadow="xs">
-                <Stack gap="md" h="100%">
+                <Stack gap="md" h="100%" justify={t.center ? 'center' : 'flex-start'}>
                   <IconQuote size={28} style={{ color: '#c9a84c', opacity: 0.7, flexShrink: 0 }} />
-                  <Text className={classes.testimonialQuote} style={{ flex: 1 }}>{t.quote}</Text>
+                  <Text className={classes.testimonialQuote} style={{ flex: t.center ? undefined : 1 }}>{t.quote}</Text>
                   <Box>
                     <Text className={classes.testimonialName}>{t.name}</Text>
                     <Text size="xs" style={{ color: '#a8872e' }}>{t.role}</Text>

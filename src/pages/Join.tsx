@@ -1,14 +1,16 @@
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Box, Container, Title, Text, SimpleGrid, Paper, Stack,
-  Badge, Button, Group, Divider, List, ThemeIcon, Table,
+  Badge, Button, Group, Divider, ThemeIcon, ActionIcon, TextInput,
 } from '@mantine/core';
 import {
-  IconUsers, IconHeart, IconStar, IconBrandSlack,
+  IconUsers, IconHeart, IconStar,
+  IconBrandInstagram, IconBrandFacebook,
   IconMail, IconCheck, IconArrowRight,
+  IconChevronLeft, IconChevronRight, IconBell,
 } from '@tabler/icons-react';
 import { PageHero } from '../components/layout/PageHero';
-import { recruitmentDates } from '../data/recruitment';
 import classes from './Join.module.css';
 
 const whyJoin = [
@@ -45,14 +47,147 @@ const requirements = [
   'Agreement to uphold the Omega Phi Alpha National Code of Conduct',
 ];
 
-function StatusBadge({ status }: { status: 'upcoming' | 'tba' | 'past' }) {
-  const map = {
-    upcoming: { color: 'gold',  label: 'Upcoming' },
-    tba:      { color: 'navy',  label: 'TBA'      },
-    past:     { color: 'gray',  label: 'Past'      },
+// TODO: Replace gradient placeholders with real sisterhood/rush photos.
+const joinPhotos = [
+  { id: 'jp1', label: 'Rush Week',            gradient: 'linear-gradient(135deg, #1a2744 0%, #3a5a9b 100%)' },
+  { id: 'jp2', label: 'Bid Day',              gradient: 'linear-gradient(135deg, #3a2a0a 0%, #8b6914 50%, #c9a84c 100%)' },
+  { id: 'jp3', label: 'New Member Education', gradient: 'linear-gradient(135deg, #1a3a2a 0%, #2d6a47 50%, #4a9968 100%)' },
+  { id: 'jp4', label: 'Rose Night',           gradient: 'linear-gradient(135deg, #4a1a2a 0%, #8b3a5a 50%, #c45d7a 100%)' },
+  { id: 'jp5', label: 'Chapter Meetings',     gradient: 'linear-gradient(135deg, #2a1a3a 0%, #5a2d7a 50%, #8b4fb5 100%)' },
+  { id: 'jp6', label: 'Sisterhood Events',    gradient: 'linear-gradient(135deg, #1a3a4a 0%, #2d6a8a 50%, #4a9bb5 100%)' },
+];
+
+function JoinSlideshow() {
+  const [index, setIndex]   = useState(0);
+  const [paused, setPaused] = useState(false);
+  const intervalRef         = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    if (paused) return;
+    intervalRef.current = setInterval(() => {
+      setIndex(i => (i + 1) % joinPhotos.length);
+    }, 3500);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [paused]);
+
+  const go = (dir: number) => {
+    setPaused(true);
+    setIndex(i => (i + dir + joinPhotos.length) % joinPhotos.length);
   };
-  const { color, label } = map[status];
-  return <Badge color={color} variant="light" size="sm" radius="xl">{label}</Badge>;
+
+  const photo = joinPhotos[index];
+
+  return (
+    <Box className={classes.slideshowWrap}>
+      <Box className={classes.slideshowCard} style={{ background: photo.gradient }}>
+        <Box className={classes.photoLabel}>
+          <Text size="xs" style={{ color: 'rgba(255,255,255,0.4)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+            Picture
+          </Text>
+        </Box>
+        <Box className={classes.photoOverlay}>
+          <Text size="sm" fw={600} c="white" lh={1.5}>{photo.label}</Text>
+        </Box>
+        <ActionIcon
+          className={`${classes.slideshowArrow} ${classes.slideshowArrowLeft}`}
+          size={44} radius="xl"
+          onClick={() => go(-1)}
+          aria-label="Previous photo"
+        >
+          <IconChevronLeft size={22} />
+        </ActionIcon>
+        <ActionIcon
+          className={`${classes.slideshowArrow} ${classes.slideshowArrowRight}`}
+          size={44} radius="xl"
+          onClick={() => go(1)}
+          aria-label="Next photo"
+        >
+          <IconChevronRight size={22} />
+        </ActionIcon>
+      </Box>
+      <Group justify="center" mt="lg" gap={8}>
+        {joinPhotos.map((_, i) => (
+          <Box
+            key={i}
+            className={`${classes.slideshowDot} ${i === index ? classes.slideshowDotActive : classes.slideshowDotInactive}`}
+            onClick={() => { setPaused(true); setIndex(i); }}
+            role="button"
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </Group>
+      {paused && (
+        <Text ta="center" size="xs" c="dimmed" mt="sm">
+          Auto-play paused —{' '}
+          <Text component="span" style={{ cursor: 'pointer', textDecoration: 'underline' }} onClick={() => setPaused(false)}>
+            resume
+          </Text>
+        </Text>
+      )}
+    </Box>
+  );
+}
+
+function NotifyForm() {
+  const [email,  setEmail]  = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'sent' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setStatus('loading');
+    try {
+      const res = await fetch('https://api.brevo.com/v3/contacts', {
+        method: 'POST',
+        headers: {
+          'api-key': import.meta.env.VITE_BREVO_API_KEY,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, listIds: [3], updateEnabled: true }),
+      });
+      // 201 = created, 204 = already subscribed — both succeed
+      setStatus(res.status === 201 || res.status === 204 ? 'sent' : 'error');
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  if (status === 'sent') {
+    return (
+      <Text c="dimmed" ta="center" size="sm">
+        ✓ You're on the list! We'll reach out when Fall 2026 rush opens.
+      </Text>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <Group gap="sm" justify="center" wrap="nowrap">
+        <TextInput
+          placeholder="your@email.com"
+          value={email}
+          onChange={e => setEmail(e.currentTarget.value)}
+          type="email"
+          required
+          style={{ minWidth: 240 }}
+          disabled={status === 'loading'}
+        />
+        <Button
+          type="submit"
+          loading={status === 'loading'}
+          leftSection={<IconBell size={15} />}
+          style={{ background: 'linear-gradient(135deg,#c9a84c,#a8872e)', color: '#1a2744', fontWeight: 700 }}
+        >
+          Notify Me
+        </Button>
+      </Group>
+      {status === 'error' && (
+        <Text c="red" size="xs" ta="center" mt="xs">Something went wrong — please try again.</Text>
+      )}
+    </form>
+  );
 }
 
 export function Join() {
@@ -65,9 +200,9 @@ export function Join() {
       />
 
       {/* WHY JOIN */}
-      <Box id="why" py="5rem" style={{ background: '#f8f9fc' }}>
+      <Box id="why" py="3rem" style={{ background: '#f8f9fc' }}>
         <Container size="xl">
-          <Stack align="center" mb="3rem" gap="sm">
+          <Stack align="center" mb="2rem" gap="sm">
             <Title order={2} className={classes.sectionTitle}>Why Join Nu Chapter?</Title>
             <Divider color="#c9a84c" maw={80} />
             <Text c="dimmed" ta="center" maw={560}>
@@ -89,7 +224,7 @@ export function Join() {
       </Box>
 
       {/* RUSH + REQUIREMENTS */}
-      <Box id="rush" py="5rem">
+      <Box id="rush" py="3rem">
         <Container size="xl">
           <SimpleGrid cols={{ base: 1, md: 2 }} spacing="4rem">
 
@@ -116,31 +251,31 @@ export function Join() {
             </Box>
 
             {/* Requirements */}
-            <Box>
+            <Box style={{ display: 'flex', flexDirection: 'column' }}>
               <Badge variant="light" color="gold" size="sm" radius="xl" mb="md">Eligibility</Badge>
               <Title order={2} className={classes.sectionTitle} mb="sm">Membership Requirements</Title>
               <Divider color="#c9a84c" maw={60} mb="md" />
               <Text c="dimmed" mb="xl" lh={1.7}>
                 We welcome students of all backgrounds who meet the following criteria at the time of pledging:
               </Text>
-              <List
-                spacing="sm"
-                icon={
-                  <ThemeIcon color="gold" size={22} radius="xl" variant="light">
-                    <IconCheck size={13} />
-                  </ThemeIcon>
-                }
-              >
+              <Box style={{ flex: 1, display: 'grid', gridTemplateRows: `repeat(${requirements.length}, 1fr)` }}>
                 {requirements.map(r => (
-                  <List.Item key={r}>
+                  <Group key={r} gap="sm" align="center" wrap="nowrap">
+                    <ThemeIcon color="gold" size={22} radius="xl" variant="light" style={{ flexShrink: 0 }}>
+                      <IconCheck size={13} />
+                    </ThemeIcon>
                     <Text size="sm" lh={1.6}>{r}</Text>
-                  </List.Item>
+                  </Group>
                 ))}
-              </List>
+              </Box>
               <Paper mt="xl" p="md" radius="md" style={{ background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.2)' }}>
                 <Text size="sm" c="dimmed">
                   <strong style={{ color: '#1a2744' }}>Not sure if you qualify?</strong>{' '}
-                  Reach out to our VP of Membership. We're happy to answer any questions before Rush Week.
+                  Reach out to our Membership Directors at{' '}
+                  <a href="mailto:nu.membership@omegaphialpha.org" style={{ color: '#a8872e', fontWeight: 600 }}>
+                    nu.membership@omegaphialpha.org
+                  </a>
+                  . We're happy to answer any questions before Rush Week.
                 </Text>
               </Paper>
             </Box>
@@ -149,26 +284,55 @@ export function Join() {
       </Box>
 
       {/* CONNECT */}
-      <Box id="connect" py="5rem" style={{ background: '#f8f9fc' }}>
+      <Box id="connect" py="3rem" style={{ background: '#f8f9fc' }}>
         <Container size="xl">
-          <Stack align="center" mb="3rem" gap="sm">
+          <Stack align="center" mb="2rem" gap="sm">
             <Title order={2} className={classes.sectionTitle}>Stay Connected</Title>
             <Divider color="#c9a84c" maw={80} />
             <Text c="dimmed" ta="center">Get the latest rush updates and connect with our current members.</Text>
           </Stack>
-          <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="lg" maw={760} mx="auto">
+          <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="lg">
             <Paper className={classes.connectCard} p="xl" radius="lg" shadow="xs">
               <Stack gap="md">
-                <Box className={classes.connectIcon}><IconBrandSlack size={28} /></Box>
-                <Title order={3} className={classes.featureTitle}>Join our Slack</Title>
+                <Box className={classes.connectIcon}><IconBrandInstagram size={28} /></Box>
+                <Title order={3} className={classes.featureTitle}>Follow Us on Instagram</Title>
                 <Text c="dimmed" size="sm" lh={1.7}>
-                  Stay connected with current members and prospective rushees. Get real-time updates on
-                  info sessions, rush events, and chapter announcements.
+                  Stay up to date on rush events, chapter announcements, and sisterhood moments. Our Instagram
+                  is the best place to see Nu Chapter in action.
                 </Text>
-                {/* TODO: Replace this button with an actual Slack invite link.
-                     Generate a permanent invite URL from your Slack workspace settings and add it as an href. */}
-                <Button variant="outline" color="navy" w="fit-content" rightSection={<IconArrowRight size={14} />}>
-                  Join Slack
+                <Button
+                  component="a"
+                  href="https://www.instagram.com/gt_ophia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="outline"
+                  color="navy"
+                  w="fit-content"
+                  rightSection={<IconArrowRight size={14} />}
+                >
+                  @gt_ophia
+                </Button>
+              </Stack>
+            </Paper>
+            <Paper className={classes.connectCard} p="xl" radius="lg" shadow="xs">
+              <Stack gap="md">
+                <Box className={classes.connectIcon}><IconBrandFacebook size={28} /></Box>
+                <Title order={3} className={classes.featureTitle}>Find Us on Facebook</Title>
+                <Text c="dimmed" size="sm" lh={1.7}>
+                  Follow our Facebook page for event updates, chapter highlights, and everything happening
+                  with Omega Phi Alpha Nu Chapter at Georgia Tech.
+                </Text>
+                <Button
+                  component="a"
+                  href="https://www.facebook.com/omegaphialphagt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="outline"
+                  color="navy"
+                  w="fit-content"
+                  rightSection={<IconArrowRight size={14} />}
+                >
+                  omegaphialphagt
                 </Button>
               </Stack>
             </Paper>
@@ -177,7 +341,7 @@ export function Join() {
                 <Box className={classes.connectIcon}><IconMail size={28} /></Box>
                 <Title order={3} className={classes.featureTitle}>Reach Out Directly</Title>
                 <Text c="dimmed" size="sm" lh={1.7}>
-                  Have questions about membership, rush, or eligibility? Our VP of Membership is happy
+                  Have questions about membership, rush, or eligibility? Our Membership Directors are happy
                   to chat. No question is too small.
                 </Text>
                 <Button
@@ -194,43 +358,30 @@ export function Join() {
         </Container>
       </Box>
 
-      {/* RECRUITMENT DATES */}
-      <Box py="5rem">
+      {/* RECRUITMENT CLOSED NOTICE */}
+      <Box py="2rem">
         <Container size="md">
-          <Stack align="center" mb="3rem" gap="sm">
-            <Title order={2} className={classes.sectionTitle}>Upcoming Recruitment Dates</Title>
+          <Paper p="2rem" radius="lg" shadow="xs" ta="center" style={{ background: 'linear-gradient(135deg, rgba(201,168,76,0.06), rgba(26,39,68,0.04))', border: '1px solid rgba(201,168,76,0.25)' }}>
+            <Badge variant="light" color="gold" size="sm" radius="xl" mb="sm">Recruitment</Badge>
+            <Title order={3} className={classes.sectionTitle} mb="xs">Spring 2026 Rush Has Closed</Title>
+            <Text c="dimmed" maw={480} mx="auto" lh={1.8} mb="md">
+              Thank you to everyone who rushed with us this semester! We'll be back in Fall 2026 — we cannot wait to see you there.
+            </Text>
+            <Text c="dimmed" size="sm" mb="md">Enter your email and we'll let you know the moment Fall 2026 rush opens.</Text>
+            <NotifyForm />
+          </Paper>
+        </Container>
+      </Box>
+
+      {/* PHOTO SLIDESHOW */}
+      <Box py="3rem" style={{ background: '#f8f9fc' }}>
+        <Container size="xl">
+          <Stack align="center" mb="2rem" gap="sm">
+            <Title order={2} className={classes.sectionTitle}>Life in Nu Chapter</Title>
             <Divider color="#c9a84c" maw={80} />
-            <Text c="dimmed" ta="center">Mark your calendar. Spaces at rush events fill up quickly!</Text>
+            <Text c="dimmed" ta="center">A glimpse into the moments that make sisterhood worth it.</Text>
           </Stack>
-          <Table className={classes.table} striped highlightOnHover withTableBorder withColumnBorders>
-            <Table.Thead>
-              <Table.Tr>
-                <Table.Th>Date</Table.Th>
-                <Table.Th>Event</Table.Th>
-                <Table.Th>Location</Table.Th>
-                <Table.Th>Status</Table.Th>
-              </Table.Tr>
-            </Table.Thead>
-            <Table.Tbody>
-              {recruitmentDates.map(row => (
-                <Table.Tr key={row.event}>
-                  <Table.Td>{row.date}</Table.Td>
-                  <Table.Td>{row.event}</Table.Td>
-                  <Table.Td>{row.location}</Table.Td>
-                  <Table.Td><StatusBadge status={row.status} /></Table.Td>
-                </Table.Tr>
-              ))}
-            </Table.Tbody>
-          </Table>
-          {/* TODO: Confirm the correct Instagram handle — Footer uses @gt_ophia but this says @opa.nu. Reconcile. */}
-          <Text ta="center" size="sm" c="dimmed" mt="xl">
-            Dates subject to change. Follow <strong>@opa.nu</strong> on Instagram or join our Slack for the latest.
-          </Text>
-          <Group justify="center" mt="lg">
-            <Button component={Link} to="/contact" variant="outline" color="navy">
-              Get Notified of Updates
-            </Button>
-          </Group>
+          <JoinSlideshow />
         </Container>
       </Box>
     </Box>

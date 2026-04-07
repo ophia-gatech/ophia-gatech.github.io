@@ -2,14 +2,45 @@ import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import {
   Box, Container, Title, Text, SimpleGrid, Paper, Stack,
-  TextInput, Textarea, Select, Button, Alert, Group, Divider, Anchor,
+  TextInput, Textarea, Select, Button, Alert, Group, Divider, Anchor, Accordion,
 } from '@mantine/core';
 import {
   IconMail, IconBrandInstagram, IconBrandFacebook, IconMapPin, IconClock,
-  IconCheck, IconArrowRight,
+  IconCheck, IconArrowRight, IconQuestionMark,
 } from '@tabler/icons-react';
 import { PageHero } from '../components/layout/PageHero';
 import classes from './Contact.module.css';
+
+const faqs = [
+  {
+    q: 'What is Omega Phi Alpha?',
+    a: 'Omega Phi Alpha is a national co-ed service sorority dedicated to service, sisterhood, and scholarship. Nu Chapter is the Georgia Tech chapter, founded to bring students together around a shared commitment to making a meaningful difference in their communities.',
+  },
+  {
+    q: 'Who can join Nu Chapter?',
+    a: 'Any currently enrolled Georgia Tech student who meets our eligibility requirements can rush — undergraduate students with a minimum 2.0 GPA and graduate students with a minimum 3.0 GPA. We welcome students of all majors, backgrounds, and identities.',
+  },
+  {
+    q: 'When does recruitment happen?',
+    a: 'Nu Chapter recruits each semester. Rush week typically takes place at the beginning of the fall and spring semesters. Spring 2026 recruitment has closed, but we will be back in Fall 2026. Sign up on our Sisterhood page to be notified when it opens.',
+  },
+  {
+    q: 'How many service hours are required each semester?',
+    a: 'Active members are expected to complete a minimum of 20 service hours per semester across Omega Phi Alpha\'s four areas of service: University Community, Community at Large, Members of the Sorority, and Nations of the World.',
+  },
+  {
+    q: 'Are dues required, and is financial assistance available?',
+    a: 'Yes, chapter dues are required each semester to support chapter programming, national dues, and events. We understand that finances can be a barrier, and financial assistance is available — please reach out to our Membership Directors confidentially if you need support.',
+  },
+  {
+    q: 'What does the new member process look like?',
+    a: 'After Bid Day, new members go through a New Member Education program that covers the history, values, and traditions of Omega Phi Alpha. The process concludes with Rose Night, a ceremony in which new members are officially welcomed as full sisters of the chapter.',
+  },
+  {
+    q: 'How is Nu Chapter different from a social sorority?',
+    a: 'Omega Phi Alpha is a service sorority, meaning our primary focus is community impact rather than social programming. While we do hold sisterhood events and build close friendships, every member joins with a commitment to service as the foundation of their membership.',
+  },
+];
 
 export function Contact() {
   const [name, setName]       = useState('');
@@ -31,7 +62,6 @@ export function Contact() {
     }
   }, [searchParams]);
 
-  // Web3Forms integration — get a free access key at https://web3forms.com
   const WEB3FORMS_KEY = '83e0ef36-8ef0-4052-9a87-9af93815b2cc';
 
   const subjectLabels: Record<string, string> = {
@@ -176,13 +206,11 @@ export function Contact() {
 
               {[
                 {
-                  // TODO: Confirm real contact email — Footer uses nu.president@omegaphialpha.org but this says nu.president@omegaphialpha.org. Reconcile.
                   icon: <IconMail size={20} />,
                   label: 'Email',
                   content: <Anchor href="mailto:nu.president@omegaphialpha.org" className={classes.infoLink}>nu.president@omegaphialpha.org</Anchor>,
                 },
                 {
-                  // TODO: Confirm correct Instagram handle (@gt_ophia vs @gt_ophia) and add the real profile URL.
                   icon: <IconBrandInstagram size={20} />,
                   label: 'Instagram',
                   content: <Anchor href="https://www.instagram.com/gt_ophia" target="_blank" rel="noopener noreferrer" className={classes.infoLink}>@gt_ophia</Anchor>,
@@ -220,12 +248,44 @@ export function Contact() {
         </Container>
       </Box>
 
+      {/* FAQ */}
+      <Box id="faq" py="5rem" style={{ background: '#f8f9fc' }}>
+        <Container size="xl">
+          <Stack align="center" mb="3rem" gap="sm">
+            <Box className={classes.faqIconWrap}>
+              <IconQuestionMark size={24} />
+            </Box>
+            <Title order={2} className={classes.infoTitle}>Frequently Asked Questions</Title>
+            <Divider color="#c9a84c" maw={80} />
+            <Text c="dimmed" ta="center" maw={520}>
+              Can't find what you're looking for? Send us a message above and we'll get back to you.
+            </Text>
+          </Stack>
+          <Accordion
+            variant="separated"
+            radius="lg"
+            maw={760}
+            mx="auto"
+            classNames={{ item: classes.faqItem, control: classes.faqControl, label: classes.faqLabel }}
+          >
+            {faqs.map((faq, i) => (
+              <Accordion.Item key={i} value={String(i)}>
+                <Accordion.Control>{faq.q}</Accordion.Control>
+                <Accordion.Panel>
+                  <Text size="sm" c="dimmed" lh={1.8}>{faq.a}</Text>
+                </Accordion.Panel>
+              </Accordion.Item>
+            ))}
+          </Accordion>
+        </Container>
+      </Box>
+
       {/* BOTTOM CTA */}
-      <Box style={{ background: '#f8f9fc', borderTop: '1px solid rgba(26,39,68,0.08)', padding: '2.5rem 0' }}>
+      <Box style={{ background: '#1a2744', padding: '2.5rem 0' }}>
         <Container size="xl">
           <Group justify="space-between" wrap="wrap" gap="xl">
             <Box>
-              <Title order={3} style={{ color: '#1a2744', marginBottom: '0.25rem', fontFamily: 'Playfair Display, serif', fontSize: '1.2rem' }}>
+              <Title order={3} style={{ color: '#fff', marginBottom: '0.25rem', fontFamily: 'Playfair Display, serif', fontSize: '1.2rem' }}>
                 Looking to join instead?
               </Title>
               <Text c="dimmed" size="sm">

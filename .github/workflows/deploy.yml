@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - uses: actions/setup-node@v4
         with:
@@ -26,7 +28,11 @@ jobs:
           cache: npm
 
       - run: npm ci
-      - run: npm run build
+
+      - name: Build
+        run: npm run build
+        env:
+          VITE_BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
 
       # Copy index.html to 404.html so react-router routes don't 404 on refresh
       - run: cp dist/index.html dist/404.html
@@ -34,6 +40,56 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+
+      # Check if the recruitment closed section specifically changed
+      - name: Check if recruitment section changed
+        id: check_recruitment
+        run: |
+          if git rev-parse HEAD~1 >/dev/null 2>&1; then
+            CHANGED=$(git diff HEAD~1 HEAD -- src/pages/Join.tsx \
+              | grep -E '^\+.*Rush Has Closed|^\-.*Rush Has Closed' \
+              | grep -v '^+++\|^---' | wc -l)
+            if [ "$CHANGED" -gt 0 ]; then
+              echo "changed=true" >> $GITHUB_OUTPUT
+            else
+              echo "changed=false" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      # Only fires when the recruitment section text changed — blasts all Brevo subscribers
+      - name: Send campaign to rush notification subscribers
+        if: steps.check_recruitment.outputs.changed == 'true'
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+        run: |
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)
+
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST https://api.brevo.com/v3/emailCampaigns \
+            -H "api-key: $BREVO_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"name\": \"Rush Notification $TIMESTAMP\",
+              \"subject\": \"Fall 2026 Rush at OPhiA Nu Chapter is Opening!\",
+              \"type\": \"classic\",
+              \"sender\": {\"name\": \"Omega Phi Alpha Nu Chapter\", \"email\": \"anika.taps@gmail.com\"},
+              \"recipients\": {\"listIds\": [3]},
+              \"htmlContent\": \"<html><body style='font-family:sans-serif;color:#1a2744;max-width:560px;margin:auto;padding:2rem'><p>Hi there!</p><p>You requested to be notified when rush for the next semester opens — and it's almost time!</p><p>Visit <a href='https://ophia-gatech.github.io/join#rush' style='color:#a8872e;font-weight:bold'>our website</a> to learn more about what to expect during recruitment and get a head start on your journey to joining Nu Chapter.</p><p>We cannot wait to meet you!</p><p>— Omega Phi Alpha Nu Chapter</p></body></html>\"
+            }")
+
+          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+          BODY=$(echo "$RESPONSE" | head -1)
+
+          if [ "$HTTP_CODE" = "201" ]; then
+            CAMPAIGN_ID=$(echo "$BODY" | python3 -c "import sys,json; print(json.load(sys.stdin)['id'])")
+            curl -s -X POST "https://api.brevo.com/v3/emailCampaigns/$CAMPAIGN_ID/sendNow" \
+              -H "api-key: $BREVO_API_KEY"
+            echo "Campaign $CAMPAIGN_ID sent to all subscribers."
+          else
+            echo "Failed to create Brevo campaign (HTTP $HTTP_CODE): $BODY"
+            exit 1
+          fi
 
   deploy:
     needs: build

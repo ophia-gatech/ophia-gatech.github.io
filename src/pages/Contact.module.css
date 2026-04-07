@@ -72,3 +72,34 @@
 .infoLink:hover {
   color: #a8872e !important;
 }
+
+/* ── FAQ ── */
+.faqIconWrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a2744, #3a5a9b);
+  color: #c9a84c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faqItem {
+  border: 1px solid rgba(26, 39, 68, 0.1) !important;
+  background: #fff !important;
+}
+
+.faqControl {
+  font-weight: 600 !important;
+  color: #1a2744 !important;
+  padding: 1rem 1.25rem !important;
+}
+
+.faqControl:hover {
+  background: rgba(201, 168, 76, 0.05) !important;
+}
+
+.faqLabel {
+  font-size: 0.95rem !important;
+}

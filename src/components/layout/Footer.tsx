@@ -64,7 +64,7 @@ export function Footer() {
             <Anchor component={Link} to="/service" className={classes.footerLink}>Learn About Our Service</Anchor>
             <Anchor component={Link} to="/join#rush" className={classes.footerLink}>Rush &amp; Recruitment</Anchor>
             <Anchor component={Link} to="/join#why" className={classes.footerLink}>Why Join?</Anchor>
-            <Anchor href="https://www.facebook.com/omegaphialphagt" target="_blank" rel="noopener noreferrer" className={classes.footerLink}>Find us on Facebook</Anchor>
+            <Anchor component={Link} to="/contact#faq" className={classes.footerLink}>FAQ</Anchor>
             <Anchor component={Link} to="/contact" className={classes.footerLink}>Partner With Us</Anchor>
           </Stack>
 
@@ -96,15 +96,7 @@ export function Footer() {
 
         <Divider my="xl" color="rgba(255,255,255,0.1)" />
 
-        <Group justify="space-between" wrap="wrap" gap="sm">
-          <Text size="xs" c="dimmed">© 2026 Omega Phi Alpha – Nu Chapter. All rights reserved.</Text>
-          <Group gap="md">
-            {/* TODO: Create /privacy and /terms routes (or link to national OPA policy pages) */}
-            <Anchor href="#" className={classes.bottomLink} size="xs">Privacy</Anchor>
-            <Anchor href="#" className={classes.bottomLink} size="xs">Terms</Anchor>
-            <Anchor component={Link} to="/contact" className={classes.bottomLink} size="xs">Accessibility</Anchor>
-          </Group>
-        </Group>
+        <Text size="xs" c="dimmed" ta="center">© 2026 Omega Phi Alpha – Nu Chapter. All rights reserved.</Text>
       </Container>
     </Box>
   );
