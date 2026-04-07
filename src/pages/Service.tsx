@@ -35,12 +35,12 @@ const otherWays = [
 ];
 
 const servicePhotos = [
-  { id: 'sp1', domain: 'Community at Large',      badgeColor: 'teal',   image: '/images/service/community at large - boo at the zoo.jpg',        caption: 'Boo at the Zoo — a fun fall event supporting our local zoo and community families.'       },
-  { id: 'sp2', domain: 'Community at Large',      badgeColor: 'teal',   image: '/images/service/community at large - habitat restoration.jpg',    caption: 'Habitat Restoration — sisters working to preserve and restore local green spaces.'         },
-  { id: 'sp3', domain: 'Community at Large',      badgeColor: 'teal',   image: '/images/service/community at large - lifeline animal project.jpg', caption: 'Lifeline Animal Project — volunteering at a local shelter to care for animals in need.'  },
-  { id: 'sp4', domain: 'Members of the Sorority', badgeColor: 'gold',   image: '/images/service/mem of sorority.jpg',                             caption: 'Self-Defense Training — sisters learning personal safety skills together as a chapter.'      },
-  { id: 'sp5', domain: 'Nations of the World',    badgeColor: 'violet', image: '/images/service/nations of the world - Books for Africa.jpg',     caption: 'Books for Africa — collecting and donating books to support education across the globe.'   },
-  { id: 'sp6', domain: 'Nations of the World',    badgeColor: 'violet', image: '/images/service/nations of the world 2 - Gift of Life Tabling.jpg', caption: 'Gift of Life Tabling — raising awareness for the bone marrow donor registry on campus.' },
+  { id: 'sp1', domain: 'Community at Large',      badgeColor: 'teal',   image: '/images/service/community at large - boo at the zoo.jpg',         caption: 'Boo at the Zoo',          objectPosition: 'center'      },
+  { id: 'sp2', domain: 'Community at Large',      badgeColor: 'teal',   image: '/images/service/community at large - habitat restoration.jpg',     caption: 'Habitat Restoration',     objectPosition: 'center'      },
+  { id: 'sp3', domain: 'Community at Large',      badgeColor: 'teal',   image: '/images/service/community at large - lifeline animal project.jpg', caption: 'Lifeline Animal Project', objectPosition: 'center 30%'  },
+  { id: 'sp4', domain: 'Members of the Sorority', badgeColor: 'gold',   image: '/images/service/mem of sorority.jpg',                              caption: 'Self-Defense Training',   objectPosition: 'center'      },
+  { id: 'sp5', domain: 'Nations of the World',    badgeColor: 'violet', image: '/images/service/nations of the world - Books for Africa.jpg',      caption: 'Books for Africa',        objectPosition: 'center'      },
+  { id: 'sp6', domain: 'Nations of the World',    badgeColor: 'violet', image: '/images/service/nations of the world 2 - Gift of Life Tabling.jpg',caption: 'Gift of Life Tabling',    objectPosition: 'center'      },
 ];
 
 function ServiceSlideshow() {
@@ -73,7 +73,7 @@ function ServiceSlideshow() {
         <img
           src={photo.image}
           alt={photo.domain}
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: photo.objectPosition }}
         />
         {/* Caption — slides up on hover */}
         <Box className={classes.photoOverlay}>
