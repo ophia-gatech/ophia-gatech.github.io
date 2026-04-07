@@ -50,11 +50,11 @@ const requirements = [
 
 const joinPhotos = [
   { id: 'jp1', label: 'Pinning Ceremony',   image: '/images/sisterhood/pinning.jpg',           objectPosition: 'center' },
-  { id: 'jp2', label: 'Formal',             image: '/images/sisterhood/formal.jpg',             objectPosition: 'center' },
+  { id: 'jp2', label: 'Formal',             image: '/images/sisterhood/formal.jpg',             objectPosition: 'center 65%' },
   { id: 'jp3', label: 'Sisterhood Retreat', image: '/images/sisterhood/sisterhood retreat.jpg', objectPosition: 'center' },
   { id: 'jp4', label: 'Pumpkin Patch',      image: '/images/sisterhood/Pumpkin patch.jpg',      objectPosition: 'center' },
   { id: 'jp5', label: 'Boo at the Zoo',     image: '/images/sisterhood/boo at the zoo.jpg',     objectPosition: 'center' },
-  { id: 'jp6', label: 'Summit at Auburn',   image: '/images/sisterhood/summit at auburn.jpg',   objectPosition: 'center' },
+  { id: 'jp6', label: 'Summit at Auburn',   image: '/images/sisterhood/summit at auburn.jpg',   objectPosition: 'center 40%' },
 ];
 
 function JoinSlideshow() {
