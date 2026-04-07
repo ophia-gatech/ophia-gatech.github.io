@@ -1,6 +1,9 @@
 .hero {
   background: linear-gradient(135deg, #1a2744 0%, #243460 60%, #3a5a9b 100%);
-  padding: 5rem 1rem 4rem;
+  min-height: 280px;
+  padding: 4rem 1rem;
+  display: flex;
+  align-items: center;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -17,6 +20,7 @@
 .content {
   position: relative;
   z-index: 1;
+  width: 100%;
 }
 
 .eyebrow {

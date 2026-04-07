@@ -34,17 +34,11 @@ const otherWays = [
   },
 ];
 
-// TODO: Replace gradient placeholders with real service photos.
-// Add an `image` field to each entry and render <img> instead of the gradient background.
 const servicePhotos = [
-  { id: 'sp1', domain: 'University Community',    badgeColor: 'navy',   gradient: 'linear-gradient(135deg, #1a2744 0%, #3a5a9b 100%)'              },
-  { id: 'sp2', domain: 'University Community',    badgeColor: 'navy',   gradient: 'linear-gradient(160deg, #243460 0%, #4a6fa5 100%)'              },
-  { id: 'sp3', domain: 'Community at Large',      badgeColor: 'teal',   gradient: 'linear-gradient(135deg, #1a3a2a 0%, #2d6a47 50%, #4a9968 100%)' },
-  { id: 'sp4', domain: 'Community at Large',      badgeColor: 'teal',   gradient: 'linear-gradient(160deg, #1a3a1a 0%, #2a5c2a 40%, #4a8c4a 100%)' },
-  { id: 'sp5', domain: 'Members of the Sorority', badgeColor: 'gold',   gradient: 'linear-gradient(135deg, #3a2a0a 0%, #8b6914 50%, #c9a84c 100%)' },
-  { id: 'sp6', domain: 'Members of the Sorority', badgeColor: 'gold',   gradient: 'linear-gradient(160deg, #2a1a0a 0%, #6b4a14 50%, #a8872e 100%)' },
-  { id: 'sp7', domain: 'Nations of the World',    badgeColor: 'violet', gradient: 'linear-gradient(135deg, #2a1a3a 0%, #5a2d7a 50%, #8b4fb5 100%)' },
-  { id: 'sp8', domain: 'Nations of the World',    badgeColor: 'violet', gradient: 'linear-gradient(160deg, #1a1a3a 0%, #3a2a6b 50%, #6a4db5 100%)' },
+  { id: 'sp1', domain: 'Community at Large',      badgeColor: 'teal',   image: '/images/service/community at large.jpg'  },
+  { id: 'sp2', domain: 'Community at Large',      badgeColor: 'teal',   image: '/images/service/community at large2.jpg' },
+  { id: 'sp3', domain: 'Members of the Sorority', badgeColor: 'gold',   image: '/images/service/mem of sorority.jpg'     },
+  { id: 'sp4', domain: 'Nations of the World',    badgeColor: 'violet', image: '/images/service/nations of the world.jpg'},
 ];
 
 function ServiceSlideshow() {
@@ -73,20 +67,12 @@ function ServiceSlideshow() {
   return (
     <Box className={classes.slideshowWrap}>
       {/* ── Main card ── */}
-      <Box className={classes.slideshowCard} style={{ background: photo.gradient }}>
-        {/* "Picture" label — always visible */}
-        <Box className={classes.photoLabel}>
-          <Text size="xs" style={{ color: 'rgba(255,255,255,0.4)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-            Picture
-          </Text>
-        </Box>
-
-        {/* Overlay — slides up on hover */}
-        <Box className={classes.photoOverlay}>
-          <Text size="sm" fw={600} c="white" lh={1.5}>
-            ___(Description of Service)___
-          </Text>
-        </Box>
+      <Box className={classes.slideshowCard} style={{ background: '#1a2744', overflow: 'hidden' }}>
+        <img
+          src={photo.image}
+          alt={photo.domain}
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+        />
 
         {/* Domain badge */}
         <Badge
