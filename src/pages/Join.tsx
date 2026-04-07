@@ -148,7 +148,33 @@ function NotifyForm() {
         body: JSON.stringify({ email, listIds: [3], updateEnabled: true }),
       });
       // 201 = created, 204 = already subscribed — both succeed
-      setStatus(res.status === 201 || res.status === 204 ? 'sent' : 'error');
+      if (res.status === 201 || res.status === 204) {
+        // Send confirmation email to the subscriber
+        await fetch('https://api.brevo.com/v3/smtp/email', {
+          method: 'POST',
+          headers: {
+            'api-key': import.meta.env.VITE_BREVO_API_KEY,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            sender: { name: 'Omega Phi Alpha Nu Chapter', email: 'anika.taps@gmail.com' },
+            to: [{ email }],
+            subject: "You're on the list — Nu Chapter Rush Notifications",
+            htmlContent: `
+              <html><body style="font-family:sans-serif;color:#1a2744;max-width:560px;margin:auto;padding:2rem">
+                <p>Hi there!</p>
+                <p>You've been added to our mailing list. We'll send you a message the moment rush for the next semester opens so you don't miss a thing.</p>
+                <p>In the meantime, feel free to explore <a href="https://ophia-gatech.github.io/join" style="color:#a8872e;font-weight:bold">our website</a> to learn more about what to expect during recruitment.</p>
+                <p>We cannot wait to meet you!</p>
+                <p>— Omega Phi Alpha Nu Chapter</p>
+              </body></html>
+            `,
+          }),
+        });
+        setStatus('sent');
+      } else {
+        setStatus('error');
+      }
     } catch {
       setStatus('error');
     }
@@ -351,23 +377,17 @@ export function Join() {
         </Container>
       </Box>
 
-      {/* RECRUITMENT OPEN NOTICE */}
+      {/* RECRUITMENT CLOSED NOTICE */}
       <Box py="2rem">
         <Container size="md">
           <Paper p="2rem" radius="lg" shadow="xs" ta="center" style={{ background: 'linear-gradient(135deg, rgba(201,168,76,0.06), rgba(26,39,68,0.04))', border: '1px solid rgba(201,168,76,0.25)' }}>
             <Badge variant="light" color="gold" size="sm" radius="xl" mb="sm">Recruitment</Badge>
-            <Title order={3} className={classes.sectionTitle} mb="xs">Fall 2026 Rush is Now Open!</Title>
+            <Title order={3} className={classes.sectionTitle} mb="xs">Spring 2026 Rush Has Closed</Title>
             <Text c="dimmed" maw={480} mx="auto" lh={1.8} mb="md">
-              Rush week is here! Join us for a volunteer event and see what Nu Chapter is all about. We cannot wait to meet you.
+              Thank you to everyone who rushed with us this semester! We'll be back in Fall 2026 — we cannot wait to see you there.
             </Text>
-            <Button
-              component={Link}
-              to="/join#rush"
-              style={{ background: 'linear-gradient(135deg,#c9a84c,#a8872e)', color: '#1a2744', fontWeight: 700 }}
-              rightSection={<IconArrowRight size={14} />}
-            >
-              Learn About Rush
-            </Button>
+            <Text c="dimmed" size="sm" mb="md">Enter your email and we'll let you know the moment Fall 2026 rush opens.</Text>
+            <NotifyForm />
           </Paper>
         </Container>
       </Box>

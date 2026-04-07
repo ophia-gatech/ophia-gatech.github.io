@@ -9,6 +9,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: write
 
 concurrency:
   group: pages
@@ -58,12 +59,30 @@ jobs:
             echo "changed=false" >> $GITHUB_OUTPUT
           fi
 
-      # Only fires when the recruitment section text changed — blasts all Brevo subscribers
+      # Only fires when the recruitment section text changed — blasts all Brevo subscribers (once ever)
       - name: Send campaign to rush notification subscribers
         if: steps.check_recruitment.outputs.changed == 'true'
         env:
           BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
         run: |
+          # Check if notification has already been sent (persistent repo variable)
+          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            "https://api.github.com/repos/$REPO/actions/variables/RUSH_NOTIFY_SENT")
+
+          if [ "$STATUS_CODE" = "200" ]; then
+            VALUE=$(curl -s \
+              -H "Authorization: Bearer $GITHUB_TOKEN" \
+              "https://api.github.com/repos/$REPO/actions/variables/RUSH_NOTIFY_SENT" \
+              | python3 -c "import sys,json; print(json.load(sys.stdin)['value'])")
+            if [ "$VALUE" = "true" ]; then
+              echo "Notification already sent to subscribers. Skipping."
+              exit 0
+            fi
+          fi
+
           TIMESTAMP=$(date +%Y%m%d%H%M%S)
 
           RESPONSE=$(curl -s -w "\n%{http_code}" -X POST https://api.brevo.com/v3/emailCampaigns \
@@ -86,6 +105,22 @@ jobs:
             curl -s -X POST "https://api.brevo.com/v3/emailCampaigns/$CAMPAIGN_ID/sendNow" \
               -H "api-key: $BREVO_API_KEY"
             echo "Campaign $CAMPAIGN_ID sent to all subscribers."
+
+            # Mark as sent permanently so it never fires again
+            if [ "$STATUS_CODE" = "200" ]; then
+              curl -s -X PATCH \
+                -H "Authorization: Bearer $GITHUB_TOKEN" \
+                -H "Content-Type: application/json" \
+                "https://api.github.com/repos/$REPO/actions/variables/RUSH_NOTIFY_SENT" \
+                -d '{"name":"RUSH_NOTIFY_SENT","value":"true"}'
+            else
+              curl -s -X POST \
+                -H "Authorization: Bearer $GITHUB_TOKEN" \
+                -H "Content-Type: application/json" \
+                "https://api.github.com/repos/$REPO/actions/variables" \
+                -d '{"name":"RUSH_NOTIFY_SENT","value":"true"}'
+            fi
+            echo "RUSH_NOTIFY_SENT variable set to true — will never send again."
           else
             echo "Failed to create Brevo campaign (HTTP $HTTP_CODE): $BODY"
             exit 1
