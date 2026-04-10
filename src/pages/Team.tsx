@@ -61,8 +61,10 @@ export function Team() {
                 shadow="xs"
               >
                 <Stack align="center" gap="sm">
-                  <Box className={classes.avatar} style={{ background: member.gradient }}>
-                    {member.initial}
+                  <Box className={classes.avatar} style={{ background: member.gradient, overflow: 'hidden', padding: 0 }}>
+                    {member.image
+                      ? <img src={member.image} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                      : member.initial}
                   </Box>
                   <Title order={4} ta="center" className={classes.memberName}>{member.name}</Title>
                   <Badge color="gold" variant="light" size="sm" radius="xl">{member.position}</Badge>
@@ -87,10 +89,8 @@ export function Team() {
 
           <Paper className={classes.spotlightCard} radius="lg" shadow="md" style={{ overflow: 'hidden' }}>
             <Group align="stretch" wrap="nowrap" gap={0} className={classes.spotlightInner}>
-              {/* TODO: Replace the placeholder icon with a real headshot of Deidre.
-                   Add the image to /public/images/ and render it with object-fit: cover to fill this panel. */}
-              <Box className={classes.spotlightImage}>
-                <Text style={{ fontSize: '5rem', color: 'rgba(201,168,76,0.25)' }}>✦</Text>
+              <Box className={classes.spotlightImage} style={{ overflow: 'hidden', padding: 0 }}>
+                <img src="/images/people/callie_portrait.jpeg" alt="Callie Brumfield" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </Box>
               <Box p="3rem" style={{ flex: 1 }}>
                 <Badge

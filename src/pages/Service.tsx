@@ -74,9 +74,11 @@ function ServiceSlideshow() {
       {/* ── Main card ── */}
       <Box className={classes.slideshowCard} style={{ background: '#1a2744', overflow: 'hidden' }}>
         <img
+          key={photo.id}
           src={photo.image}
           alt={photo.domain}
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: photo.objectPosition }}
+          className={classes.slideshowImg}
+          style={{ objectPosition: photo.objectPosition }}
         />
         {/* Caption — slides up on hover */}
         <Box className={classes.photoOverlay}>

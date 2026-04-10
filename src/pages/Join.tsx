@@ -83,9 +83,11 @@ function JoinSlideshow() {
     <Box className={classes.slideshowWrap}>
       <Box className={classes.slideshowCard} style={{ background: '#1a2744', overflow: 'hidden' }}>
         <img
+          key={photo.id}
           src={photo.image}
           alt={photo.label}
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: photo.objectPosition }}
+          className={classes.slideshowImg}
+          style={{ objectPosition: photo.objectPosition }}
         />
         <Box className={classes.photoOverlay}>
           <Text size="sm" fw={600} c="white" lh={1.5}>{photo.label}</Text>

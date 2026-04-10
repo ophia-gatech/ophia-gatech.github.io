@@ -71,6 +71,22 @@
 }
 
 /* ── JOIN SLIDESHOW ── */
+@keyframes slideFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.slideshowImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: slideFadeIn 0.35s ease;
+  will-change: opacity;
+}
+
 .slideshowWrap {
   position: relative;
   max-width: 960px;
