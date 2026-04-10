@@ -89,8 +89,8 @@ export function Team() {
 
           <Paper className={classes.spotlightCard} radius="lg" shadow="md" style={{ overflow: 'hidden' }}>
             <Group align="stretch" wrap="nowrap" gap={0} className={classes.spotlightInner}>
-              <Box className={classes.spotlightImage} style={{ overflow: 'hidden', padding: 0 }}>
-                <img src="/images/people/callie_portrait.jpeg" alt="Callie Brumfield" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              <Box className={classes.spotlightImage}>
+                <Text style={{ fontSize: '5rem', color: 'rgba(201,168,76,0.25)' }}>✦</Text>
               </Box>
               <Box p="3rem" style={{ flex: 1 }}>
                 <Badge
