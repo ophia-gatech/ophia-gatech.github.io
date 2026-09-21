@@ -185,7 +185,7 @@ function NotifyForm() {
   if (status === 'sent') {
     return (
       <Text c="dimmed" ta="center" size="sm">
-        ✓ You're on the list! We'll reach out when Fall 2026 rush opens.
+        ✓ You're on the list! We'll reach out when Spring 2027 rush opens.
       </Text>
     );
   }
@@ -384,9 +384,9 @@ export function Join() {
             <Badge variant="light" color="gold" size="sm" radius="xl" mb="sm">Recruitment</Badge>
             <Title order={3} className={classes.sectionTitle} mb="xs">Spring 2026 Rush Has Closed</Title>
             <Text c="dimmed" maw={480} mx="auto" lh={1.8} mb="md">
-              Thank you to everyone who rushed with us this semester! We'll be back in Fall 2026 — we cannot wait to see you there.
+              Thank you to everyone who rushed with us this semester! We'll be back in Spring 2027 — we cannot wait to see you there.
             </Text>
-            <Text c="dimmed" size="sm" mb="md">Enter your email and we'll let you know the moment Fall 2026 rush opens.</Text>
+            <Text c="dimmed" size="sm" mb="md">Enter your email and we'll let you know the moment Spring 2027 rush opens.</Text>
             <NotifyForm />
           </Paper>
         </Container>
