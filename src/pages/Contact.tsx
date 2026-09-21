@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     q: 'When does recruitment happen?',
-    a: 'Nu Chapter recruits each semester. Rush week typically takes place at the beginning of the fall and spring semesters. Spring 2026 recruitment has closed, but we will be back in Fall 2026. Sign up on our Sisterhood page to be notified when it opens.',
+    a: 'Nu Chapter recruits each semester. Rush week typically takes place at the beginning of the fall and spring semesters. Fall 2026 recruitment has closed, but we will be back in Spring 2027. Sign up on our Sisterhood page to be notified when it opens.',
   },
   {
     q: 'How many service hours are required each semester?',
