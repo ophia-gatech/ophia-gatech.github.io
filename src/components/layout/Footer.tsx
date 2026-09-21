@@ -90,7 +90,7 @@ export function Footer() {
             </Group>
             <Group gap={6} align="flex-start">
               <IconClock size={14} style={{ color: '#c9a84c', marginTop: 3, flexShrink: 0 }} />
-              <Text size="sm" c="dimmed">Every Wed, 6 PM</Text>
+              <Text size="sm" c="dimmed">Every Wed, 6-7 PM</Text>
             </Group>
           </Stack>
         </SimpleGrid>
