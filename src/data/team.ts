@@ -115,22 +115,19 @@ export const execBoard: ExecMember[] = [
   },
   {
     id: 'pr-chair',
-    name: 'Risha Khanna',
+    name: 'Delani Gatson',
     position: 'Public Relations Chair',
     bio: 'Manages our public presence, social media accounts, and chapter communications to share our story and grow awareness of Nu Chapter across campus.',
-    initial: 'R',
+    initial: 'D',
     gradient: 'linear-gradient(135deg, #4a1a2a, #8b3a5a)',
-    image: '/images/people/Risha_portrait.jpeg',
   },
   {
     id: 'ado',
-    name: 'Jasmine Lopez-Sandoval',
+    name: 'Trisha Patel',
     position: 'Active District Officer',
     bio: 'Serves as Nu Chapter\'s representative to the regional district, attending district meetings and fostering connections with other Omega Phi Alpha chapters.',
-    initial: 'J',
+    initial: 'T',
     gradient: 'linear-gradient(135deg, #1a3a4a, #2d6a8a)',
-    image: '/images/people/jasmine_portrait.jpeg',
-    imageScale: 1.15,
   },
 ];
 
