@@ -314,8 +314,8 @@ export function Service() {
                   </Text>
                   <Text c="dimmed" lh={1.8}>
                     Through partnerships with local schools, educational organizations, and community
-                    centers, our members work directly with students to provide academic support, 
-                    mentorship, and access to resources that can help them succeed.
+                    centers, our members work to provide students the support and resources they need 
+                    to succeed.
                   </Text>
                 </Stack>
                 <Stack gap="md">
