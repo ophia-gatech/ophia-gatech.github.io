@@ -288,7 +288,7 @@ export function Service() {
             <Text c="dimmed" ta="center" maw={600} lh={1.7}>
               Every two years, the national President of Omega Phi Alpha selects a focus project at the national convention, reflecting
               the organization's current values and priorities. This cycle, the President's Project is
-              dedicated to paving pathways for education.
+              dedicated to paving pathways for education. 
             </Text>
           </Stack>
 
