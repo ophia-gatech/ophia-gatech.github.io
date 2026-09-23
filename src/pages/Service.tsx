@@ -283,12 +283,12 @@ export function Service() {
         <Container size="xl">
           <Stack align="center" mb="3rem" gap="sm">
             <Badge variant="filled" color="navy" size="sm" radius="xl" mb="lg">President's Project</Badge>
-            <Title order={2} className={classes.sectionTitle} ta="center">Strengthening Families</Title>
+            <Title order={2} className={classes.sectionTitle} ta="center">Paving Pathways for Education</Title>
             <Divider color="#c9a84c" maw={80} />
             <Text c="dimmed" ta="center" maw={600} lh={1.7}>
               Every two years, the national President of Omega Phi Alpha selects a focus project at the national convention, reflecting
               the organization's current values and priorities. This cycle, the President's Project is
-              dedicated to strengthening families.
+              dedicated to paving pathways for education.
             </Text>
           </Stack>
 
@@ -307,14 +307,15 @@ export function Service() {
                     </Box>
                   </Group>
                   <Text c="dimmed" lh={1.8}>
-                    Families are the foundation of every thriving community. Yet many families in our
-                    area face challenges ranging from food insecurity and housing instability to a lack
-                    of access to educational and social resources. This project is about showing up for
-                    them, consistently and meaningfully.
+                    Every student deserves the opportunity to pursue an education and build a future they 
+                    are proud of. However, many students face barriers such as limited access to academic 
+                    resources, mentorship, and opportunities to explore their goals. This project is about 
+                    helping students overcome those barriers and create pathways toward their futures.
                   </Text>
                   <Text c="dimmed" lh={1.8}>
-                    Through partnerships with local family services organizations, shelters, and community
-                    centers, our members engage directly with the families who need support most.
+                    Through partnerships with local schools, educational organizations, and community
+                    centers, our members work directly with students to provide academic support, 
+                    mentorship, and access to resources that can help them succeed.
                   </Text>
                 </Stack>
                 <Stack gap="md">
@@ -328,13 +329,13 @@ export function Service() {
                     }
                   >
                     {[
-                      'Volunteer at family shelters and transitional housing programs',
-                      'Organize supply drives for essential household and baby items',
-                      'Support after-school and tutoring programs for children',
-                      'Partner with food banks to address family-level food insecurity',
-                      'Assist with family resource fairs and community events',
-                      'Fundraise for local organizations focused on family stability',
-                      'Connect families with mental health and wellness resources in the community',
+                      'STEM activity kits for Atlanta students',
+                      'Alphabet flashcard sets for young learners',
+                      'Reading and literacy activity packets',
+                      'Educational art and learning projects',
+                      'School supply and classroom resource drives',
+                      'Fundraise for local organizations focused on education',
+                      'Academic mentoring and tutoring sessions',
                     ].map(item => (
                       <List.Item key={item}>
                         <Text size="sm" lh={1.6}>{item}</Text>
