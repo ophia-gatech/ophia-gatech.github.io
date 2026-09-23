@@ -130,6 +130,8 @@ export const execBoard: ExecMember[] = [
     gradient: 'linear-gradient(135deg, #1a3a4a, #2d6a8a)',
     image: 'images/people/trisha_headshot.jpg',
     imageScale: 1.5,
+    imagePosition: 'center 60%',
+
 
   },
 ];
