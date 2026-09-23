@@ -382,7 +382,7 @@ export function Join() {
         <Container size="md">
           <Paper p="2rem" radius="lg" shadow="xs" ta="center" style={{ background: 'linear-gradient(135deg, rgba(201,168,76,0.06), rgba(26,39,68,0.04))', border: '1px solid rgba(201,168,76,0.25)' }}>
             <Badge variant="light" color="gold" size="sm" radius="xl" mb="sm">Recruitment</Badge>
-            <Title order={3} className={classes.sectionTitle} mb="xs">Spring 2026 Rush Has Closed</Title>
+            <Title order={3} className={classes.sectionTitle} mb="xs">Fall 2026 Rush Has Closed</Title>
             <Text c="dimmed" maw={480} mx="auto" lh={1.8} mb="md">
               Thank you to everyone who rushed with us this semester! We'll be back in Spring 2027 — we cannot wait to see you there.
             </Text>
