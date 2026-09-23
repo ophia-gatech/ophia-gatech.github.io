@@ -128,6 +128,8 @@ export const execBoard: ExecMember[] = [
     bio: 'Serves as Nu Chapter\'s representative to the regional district, attending district meetings and fostering connections with other Omega Phi Alpha chapters.',
     initial: 'T',
     gradient: 'linear-gradient(135deg, #1a3a4a, #2d6a8a)',
+    image: '/images/people/trisha_headshot.jpeg',
+
   },
 ];
 
