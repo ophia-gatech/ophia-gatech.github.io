@@ -122,7 +122,6 @@ export const execBoard: ExecMember[] = [
     bio: 'Manages our public presence, social media accounts, and chapter communications to share our story and grow awareness of Nu Chapter across campus.',
     initial: 'D',
     gradient: 'linear-gradient(135deg, #4a1a2a, #8b3a5a)',
-    image: '/images/people/delani_portrait.jpg
 ',
 
   },
