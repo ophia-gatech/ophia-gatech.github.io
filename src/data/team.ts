@@ -56,6 +56,8 @@ export const execBoard: ExecMember[] = [
     bio: 'Manages chapter finances, annual budgeting, dues collection, and fundraising initiatives to keep Nu Chapter fully resourced for all activities.',
     initial: 'D',
     gradient: 'linear-gradient(135deg, #1a6b3a, #2d9e5a)',
+    image: '/images/people/denisha_portrait.jpg',
+
   },
   {
     id: 'service-director-1',
