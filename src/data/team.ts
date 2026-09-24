@@ -145,6 +145,6 @@ export const spotlight: SpotlightMember = {
   name: 'Callie Brumfield',
   role: 'President, Nu Chapter',
   quote:
-    '"Nu Chapter is a place where you show up, give back, and leave knowing you made a difference — and that you have an incredible group of people behind you every step of the way."',
+    '"OPhiA has helped me grow in my leadership skills while providing me with lifelong friendships and opportunities to make a  purposeful impact in my community.  The memories and experiences I have made will continue to shape me for years to come."',
   bio: 'As President of Nu Chapter, Callie is committed to building a chapter rooted in genuine service, strong sisterhood, and meaningful leadership. Her vision for this semester is to deepen the chapter\'s community partnerships, increase member engagement in all four pillars of service, and create an environment where every member feels seen and valued. She looks forward to welcoming new members who share that same passion for making an impact.',
 };
