@@ -170,8 +170,8 @@ export function Service() {
               <Divider color="#c9a84c" maw={60} />
               <Text c="dimmed" lh={1.8}>
                 Every semester, the members of Omega Phi Alpha's Nu Chapter collectively log hundreds of volunteer hours across
-                a wide range of causes, from supporting mental health awareness to strengthening
-                families in our local community. We believe that meaningful change starts with showing up.
+                a wide range of causes, from supporting mental health awareness to paving pathways for education
+                in our local community. We believe that meaningful change starts with showing up.
               </Text>
               <Text c="dimmed" lh={1.8}>
                 Our service reaches four areas: the <strong>university community</strong>, the{' '}
@@ -302,7 +302,7 @@ export function Service() {
                       <IconUsers size={22} />
                     </ThemeIcon>
                     <Box>
-                      <Text fw={700} style={{ color: '#1a2744', fontSize: '1.1rem' }}>Why Strengthening Families?</Text>
+                      <Text fw={700} style={{ color: '#1a2744', fontSize: '1.1rem' }}>Why Education?</Text>
                       <Text size="xs" c="dimmed">This semester's President's Project</Text>
                     </Box>
                   </Group>
