@@ -108,12 +108,12 @@ export const execBoard: ExecMember[] = [
   },
   {
     id: 'outreach-chair',
-    name: 'Anika Tapshalkar',
+    name: 'Jaclyn Cracknell',
     position: 'Outreach Chair',
     bio: 'Builds and maintains relationships with campus organizations, local nonprofits, and community partners to expand Nu Chapter\'s reach and impact.',
-    initial: 'A',
+    initial: 'J',
     gradient: 'linear-gradient(135deg, #1a4a3a, #2d8a6a)',
-    image: '/images/people/anika_portrait.jpeg',
+    //image: '/images/people/anika_portrait.jpeg',
   },
   {
     id: 'pr-chair',
